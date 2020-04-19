@@ -8,6 +8,7 @@ import Home from './Home'
 import Barra from '../components/Barra';
 import Matematicas from './Matematicas'
 import Lengua from './Lengua'
+import Error from './Error'
 
 const Container = styled.div`
   max-width: 980px;
@@ -34,10 +35,10 @@ changeName = (newName) => {
 }
 
 handleClick = () => {
-  this.setState({
-    mostrar: this.state.mostrar + ' ' + this.state.name,
-    show: true,
-  })
+    this.setState({
+      mostrar: this.state.mostrar + ' ' + this.state.name,
+      show: true,
+    })
 };
 
   render() {
@@ -73,6 +74,11 @@ handleClick = () => {
                 path="/lengua"
                 exact
                 render={(props) => <Lengua {...props} name={this.state.name} />}
+              />
+              <Route
+                path="/Error"
+                exact
+                component={Error}
               />
               <Redirect to="/" />
             </Switch>

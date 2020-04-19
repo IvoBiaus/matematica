@@ -78,7 +78,6 @@ export default function Seleccion() {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails  className={classes.content}>
                   <Typography>
-                    <div className={classes.botones}>
                       <Link to={{ pathname: '/matematicas', state: { ej: 'Tablas'} }}>
                         <Button  className={classes.boton} variant="contained">Tablas</Button>
                       </Link>
@@ -88,7 +87,6 @@ export default function Seleccion() {
                       <Link to={{ pathname: '/matematicas', state: { ej: 'Sumas'} }}>
                         <Button  className={classes.boton} variant="contained">Sumas</Button>
                       </Link>
-                    </div>
                   </Typography>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
@@ -104,7 +102,6 @@ export default function Seleccion() {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails  className={classes.content}> 
                   <Typography>
-                    <div className={classes.botones}>
                       <Link to={{ pathname: '/lengua', state: { ej: 'Silabas'} }}>
                         <Button  className={classes.boton} variant="contained">Silabas</Button>
                       </Link>
@@ -114,7 +111,6 @@ export default function Seleccion() {
                       <Link to={{ pathname: '/lengua', state: { ej: 'Otro Ej 2'} }}>
                         <Button  className={classes.boton} variant="contained">Otro Ej</Button>
                       </Link>
-                    </div>
                   </Typography>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
