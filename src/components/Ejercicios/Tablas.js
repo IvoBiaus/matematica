@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 
+
+
 // const Container = styled.div`
 //   max-width: 980px;
 //   margin: 0 auto;
@@ -25,6 +27,8 @@ const useStyles = theme => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
+    marginRight: 16,
+    marginTop: 20,
   },
 });
 
@@ -98,6 +102,7 @@ class Tablas extends Component {
         </form>
         <div>
           <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Volver</Button>
+          <Button variant="contained" color="primary" className={classes.boton}>Siguiente</Button>
         </div>
       </div>
 

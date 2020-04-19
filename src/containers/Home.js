@@ -91,7 +91,7 @@ class Home extends Component {
             <h1>Bienvenido a las clases</h1>
           </div>
           <Form noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Standard" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
+            <TextField id="standard-basic" label="Ingresa tu nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
             {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
             <Button variant="contained"   onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
           </Form>
