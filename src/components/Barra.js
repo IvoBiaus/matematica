@@ -38,7 +38,7 @@ export default function ButtonAppBar(props) {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             {props.login && <StyledLink to="/seleccion"> 
-                Elegir Materia
+                Ejercicios
             </StyledLink>}
             <StyledLink className={classes.menuButton} to="/puntajes">
                 Puntajes

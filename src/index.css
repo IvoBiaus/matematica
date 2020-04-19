@@ -1,8 +1,9 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: sans-serif;
-  background-color: rgba(179, 255, 0, 0.445);
+  background-color: rgba(239, 245, 247, 0.445);
 }
 
 
@@ -25,4 +26,12 @@ body {
 .centrado {
   align-items: center;
   align-self: center;
+}
+
+.fill-window {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
 }

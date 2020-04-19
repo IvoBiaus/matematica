@@ -15,7 +15,8 @@ function Error(props) {
           style={{ minHeight: '50vh' }}>
             <div>
                 <img src={ErrorImg} alt="error" />
-                <h1>Hubo un error de comunicación con el servidor, intenta nuevamente</h1>
+                <h1 className='titleCenter'>Hubo un error de comunicación con el servidor</h1>
+                <h2>Intenta nuevamente!!</h2>
                 <Button variant="contained" component={Link} to={'/'}>Volver</Button>
             </div>
         </Grid>

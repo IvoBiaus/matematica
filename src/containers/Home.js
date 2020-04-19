@@ -58,7 +58,6 @@ class Home extends Component {
   resultadoUsuario (existe, error)
   {
     if(error != null) {
-      console.log(error);
       this.props.history.push('/Error')
       return;
     }

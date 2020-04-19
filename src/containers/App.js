@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { withStyles  } from '@material-ui/core/styles';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Hero from '../components/Hero'
 import Puntajes from '../components/Puntajes';
-import Seleccion from './Seleccion'
-import Home from './Home'
+import Seleccion from './Seleccion';
+import Home from './Home';
 import Barra from '../components/Barra';
-import Matematicas from './Matematicas'
-import Lengua from './Lengua'
-import Error from './Error'
+import Matematicas from './Matematicas';
+import Error from './Error';
+import Typography from '@material-ui/core/Typography';
+import FooterImg from '../images/footer.jpg';
 
 const Container = styled.div`
   max-width: 980px;
   margin: 0 auto;
 `;
+
+const useStyles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+  },
+});
 
 class App extends Component {
 
@@ -40,14 +60,14 @@ handleClick = () => {
       show: true,
     })
 };
-
-  render() {
+render() {
+  const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <Hero name={this.state.mostrar} />
         <BrowserRouter>
         <div>
-          <Barra login={this.state.show}/>
+        <Barra login={this.state.show}/>
           <Container>
             <Switch>
               <Route
@@ -71,11 +91,6 @@ handleClick = () => {
                 render={(props) => <Matematicas {...props} name={this.state.name} />}
               />
               <Route
-                path="/lengua"
-                exact
-                render={(props) => <Lengua {...props} name={this.state.name} />}
-              />
-              <Route
                 path="/Error"
                 exact
                 component={Error}
@@ -85,9 +100,15 @@ handleClick = () => {
           </Container>
         </div>
         </BrowserRouter>
+        <footer className={classes.footer}>
+            <Container maxWidth="sm">
+            <img src={FooterImg} alt="" />
+            {/* <Typography variant="body1">My sticky footer can be found here.</Typography> */}
+            </Container>
+        </footer>
       </div>
     );
   }
 }
 
-export default App;
+export default withStyles(useStyles)(App);

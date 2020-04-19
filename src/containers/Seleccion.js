@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Matematica from '../images/matematica.jpg';
-import Lengua from '../images/lengua.jpg';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -61,7 +60,7 @@ export default function Seleccion() {
           direction="column"
           alignItems="center"
           justify="center"
-          style={{ minHeight: '50vh', display: "block" }}>
+          style={{ minHeight: '50vh' }}>
             <div>
               <h1 className='titleCenter'>Elegí que queres pracitar hoy</h1>
             </div>
@@ -90,7 +89,7 @@ export default function Seleccion() {
                   </Typography>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
-              <ExpansionPanel>
+              {/* <ExpansionPanel>
                 <ExpansionPanelSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel2a-content"
@@ -113,7 +112,7 @@ export default function Seleccion() {
                       </Link>
                   </Typography>
                 </ExpansionPanelDetails>
-              </ExpansionPanel>
+              </ExpansionPanel> */}
             </div>
         </Grid>
       </div>

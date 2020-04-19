@@ -8,6 +8,7 @@ import SchoolIcon from '@material-ui/icons/School';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    display: 'contents',
   },
   menuButton: {
     marginRight: theme.spacing(2),
