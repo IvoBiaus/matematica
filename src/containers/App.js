@@ -9,7 +9,6 @@ import Home from './Home';
 import Barra from '../components/Barra';
 import Matematicas from './Matematicas';
 import Error from './Error';
-import Typography from '@material-ui/core/Typography';
 import FooterImg from '../images/footer.jpg';
 
 const Container = styled.div`
@@ -102,8 +101,7 @@ render() {
         </BrowserRouter>
         <footer className={classes.footer}>
             <Container maxWidth="sm">
-            <img src={FooterImg} alt="" />
-            {/* <Typography variant="body1">My sticky footer can be found here.</Typography> */}
+              <img src={FooterImg} alt="" />
             </Container>
         </footer>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,58 +7,87 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Api from '../controller/Api';
 
-const useStyles = makeStyles({
+const useStyles = {
   table: {
     minWidth: 650,
-    backgroundColor: '#00FF80',
   },
-});
+};
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+class Puntajes extends React.Component {
+  constructor()
+  {
+    super();
+    this.state = {
+      puntajes: []
+    }
+  }
 
-export default function SimpleTable() {
-  const classes = useStyles();
+  componentDidMount() 
+  {
+    Api.getPuntajes(this.resultPuntajes.bind(this));
+  }
+  resultPuntajes (puntajes, error)
+  {
+    if(error != null) {
+      this.props.history.push('/Error')
+      return;
+    }
+    this.setState({puntajes : puntajes })
+  }
 
-  return (
-    <div>
-    <h1 class='titleCenter'>Puntaje de los almunos</h1>
-    <TableContainer class='tableScore' component={Paper}> 
+  render()
+  {
+    const { classes } = this.props;
+    return (
+      <div>
+      <h1 className='titleCenter'>Puntaje de los almunos</h1>
+      <div>
+      {/* <table>
+        <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Puntaje</th>
+            </tr>
+        </thead>
+      <tbody> 
+        {this.state.puntajes.map(function(item, key){
+          return(
+            <tr key={key}>
+              <td>{item.Nombre}</td>
+              <td>{item.Puntos}</td>
+            </tr>
+              )
+          })}
+        </tbody>
+       </table> */}
+       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Nombre</TableCell>
+            <TableCell align="right">Puntos</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {this.state.puntajes.map((row) => (
+            <TableRow key={row.nombre}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.nombre}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.puntos}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-    </div>
-  );
+      </div>
+      </div>
+    );
+  }
+  
 }
+
+export default withStyles(useStyles)(Puntajes);
