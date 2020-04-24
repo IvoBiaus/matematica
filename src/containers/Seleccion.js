@@ -34,18 +34,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgb(49, 185, 132)',
   },
   content: {
-    backgroundColor: '#f9f7db',
+    backgroundColor: '#FFC226',
   },
   boton: {
-    display: 'inline-table',
     marginRight: 16,
     marginTop: 5,
-    width: "100px",
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
+    borderRadius: '200px',
+    display: 'inline-block',
+    fontSize: '15px',
+    height: '40px',
+    width: '200px',
+    border: '0',
+    textAlign: 'center',
+    transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   },
-  botones: {
-    display: 'inline-table',
-    paddingTop: '15px',
-  }
 }));
 
 
