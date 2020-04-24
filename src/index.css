@@ -3,7 +3,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: sans-serif;
-  background-color: rgba(239, 245, 247, 0.445);
+  background-color: #FFC226;
 }
 
 
@@ -21,11 +21,6 @@ body {
 
 .titleCenter {
   text-align: center;
-}
-
-.centrado {
-  align-items: center;
-  align-self: center;
 }
 
 .fill-window {

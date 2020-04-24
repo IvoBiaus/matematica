@@ -15,6 +15,18 @@ const useStyles = theme => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  botonPrimario: {
+      backgroundColor: '#000000',
+      color: '#FFFFFF',
+      borderRadius: '200px',
+      display: 'inline-block',
+      fontSize: '15px',
+      height: '40px',
+      width: '200px',
+      border: '0',
+      textAlign: 'center',
+      transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   }
 });
 
@@ -93,7 +105,7 @@ class Home extends Component {
           <Form noValidate autoComplete="off">
             <TextField id="standard-basic" label="Ingresa tu nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
             {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
-            <Button variant="contained"   onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
+            <Button className={classes.botonPrimario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
           </Form>
         </Grid>
         <Modal
