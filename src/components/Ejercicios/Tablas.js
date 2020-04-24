@@ -87,7 +87,7 @@ class Tablas extends Component {
         <h2 className='titleCenter'>Practiequemos las Tablas</h2>
         <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
         <form className={classes.root}>
-          <TextField  id="standard" label="2x2"  />
+          {/* <TextField  id="standard" label="2x2"  />
           <TextField  id="standard" label="3x3"  />
           <TextField  id="standard" label="3x3"  />
           <TextField  id="standard" label="3x3"  />
@@ -98,7 +98,13 @@ class Tablas extends Component {
           <TextField  id="standard" label="3x3"  />
           <TextField  id="standard" label="3x3"  />
           <TextField  id="standard" label="3x3"  />
-          <TextField  id="standard" label="3x3"  />
+          <TextField  id="standard" label="3x3"  /> */}
+          {this.state.data.map((row) => (
+            <div>
+              <label>{row.operacion}</label>
+              <TextField id={row.id} label={row.operacion} />
+            </div>
+          ))}
         </form>
         <div>
           <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Volver</Button>
