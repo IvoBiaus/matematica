@@ -36,14 +36,14 @@ class Home extends Component {
           direction="column"
           alignItems="center"
           justify="center"
-          style={{ minHeight: '50vh' }}>
+          style={{ minHeight: '90vh',backgroundColor: '#e6b800' }}>
           <div>
-            <h1>Bienvenido a las clases</h1>
+            <h1>Hola! Cómo te llamas?</h1>
           </div>
-          <Form noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Standard" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
-            <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button>
-          </Form>
+          
+            <TextField id="standard-basic" label="Nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
+            <Button type="submit" variant="contained" component={Link} to={'/Bienvenido'} onClick={this.props.onClick} disabled={!this.state.name}>Ingresar</Button>
+        
         </Grid>
       </div>
       );

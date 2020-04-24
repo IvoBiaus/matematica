@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#19bb5a',
+    backgroundColor: '#e6b800',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -37,16 +37,10 @@ export default function ButtonAppBar(props) {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            {props.login && <StyledLink to="/seleccion"> 
-                Elegir Materia
-            </StyledLink>}
-            <StyledLink className={classes.menuButton} to="/puntajes">
-                Puntajes
-            </StyledLink>
+            {props.login && <StyledLink to="/seleccion">Seleccion de Juego</StyledLink>}
+            {props.puntajes && <StyledLink to="/puntajes">Ver puntajes</StyledLink>}
+            {props.salir && <StyledLink className={classes.menuButton} to="/">Salir</StyledLink>}
           </Typography>
-            <StyledLink to="/">
-                <Button color="inherit">Exit</Button>
-            </StyledLink>
         </Toolbar>
       </AppBar>
     </div>

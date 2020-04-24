@@ -5,12 +5,13 @@ import Hero from '../components/Hero'
 import Puntajes from '../components/Puntajes';
 import Seleccion from './Seleccion'
 import Home from './Home'
+import Bienvenido from './Bienvenido';
 import Barra from '../components/Barra';
 import Matematicas from './Matematicas'
 import Lengua from './Lengua'
 
 const Container = styled.div`
-  max-width: 980px;
+  max-width: 2080px;
   margin: 0 auto;
 `;
 
@@ -19,13 +20,17 @@ class App extends Component {
 state = {
   mostrar: 'Bienvenido',
   name: '',
-  show: false
+  showLogin: false,
+  showPuntaje: false,
+  showSalir: false
 };
 
 resetName = () => {
   this.setState({
     mostrar: 'Bienvenido',
-    show: false,
+    showLogin: false,
+    showPuntaje: false,
+    showSalir: false,
   })
 }
 
@@ -36,23 +41,30 @@ changeName = (newName) => {
 handleClick = () => {
   this.setState({
     mostrar: this.state.mostrar + ' ' + this.state.name,
-    show: true,
+    showLogin: true,
+    showPuntaje: false,
+    showSalir: true,
   })
 };
 
   render() {
     return (
       <div>
-        <Hero name={this.state.mostrar} />
+        {/* <Hero name={this.state.mostrar} /> */}
         <BrowserRouter>
         <div>
-          <Barra login={this.state.show}/>
+          <Barra login={this.state.showLogin} puntajes={this.state.showPuntaje} salir={this.state.showSalir}/>
           <Container>
             <Switch>
               <Route
                 path="/"
                 exact
                 render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+              />
+              <Route
+                path="/Bienvenido"
+                exact
+                render={(props) => <Bienvenido {...props} name={this.state.name} />}
               />
               <Route
                 path="/Seleccion"

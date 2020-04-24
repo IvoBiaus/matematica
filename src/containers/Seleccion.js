@@ -4,7 +4,9 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Matematica from '../images/matematica.jpg';
-import Lengua from '../images/lengua.jpg';
+import Sumas from '../images/sumas.png';
+import Billetes from '../images/billetes.jpeg';
+import Tablas from '../images/tablas.jpg';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -29,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '55px',
   },
   imagen: {
-    height: '40px',
+    height: 100,
+    width: 150,
+    border: 'solid', 
   },
   panel: {
     backgroundColor: 'rgb(49, 185, 132)',
@@ -56,69 +60,31 @@ export default function Seleccion() {
     
     return (
       <div>
-      <Grid  container
-          spacing={0}
-          direction="column"
-          alignItems="center"
+        <Grid 
           justify="center"
-          style={{ minHeight: '50vh', display: "block" }}>
-            <div>
-              <h1 className='titleCenter'>Elegí que queres pracitar hoy</h1>
+          style={{ minHeight: '90vh', backgroundColor: '#e6b800'}}>
+            <div className='column'>
+              <h1>Elegí un juego</h1>
+              <div className="row">
+              <React.Fragment>
+              <div className='card col-3 col-sm-6 col-md-4 col-lg-3 mb-4'>
+                  <img className={classes.imagen} src={Billetes} alt="billetes" />
+                </div>
+              
+              
+              
+                <div className='card col-3 col-sm-6 col-md-4 col-lg-3 mb-4'>
+                  <img className={classes.imagen} src={Sumas} alt="sumas" /> 
+                </div>
+                
+                <div className='card col-3 col-sm-6 col-md-4 col-lg-3 mb-4'>
+                  <img className={classes.imagen} src={Tablas} alt="tablas" /> 
+                </div>
+             
+                </React.Fragment>
+                </div>
             </div>
-            <div className={classes.root}>
-              <ExpansionPanel>
-                <ExpansionPanelSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                  className={classes.panel}
-                >
-                  <img className={classes.imagen} src={Matematica} alt="matematica" />
-                  <Typography className={classes.heading}>Matemáticas</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails  className={classes.content}>
-                  <Typography>
-                    <div className={classes.botones}>
-                      <Link to={{ pathname: '/matematicas', state: { ej: 'Tablas'} }}>
-                        <Button  className={classes.boton} variant="contained">Tablas</Button>
-                      </Link>
-                      <Link to={{ pathname: '/matematicas', state: { ej: 'Billetes'} }}>
-                        <Button  className={classes.boton} variant="contained">Billetes</Button>
-                      </Link>
-                      <Link to={{ pathname: '/matematicas', state: { ej: 'Sumas'} }}>
-                        <Button  className={classes.boton} variant="contained">Sumas</Button>
-                      </Link>
-                    </div>
-                  </Typography>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-              <ExpansionPanel>
-                <ExpansionPanelSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel2a-content"
-                  id="panel2a-header"
-                  className={classes.panel}
-                >
-                  <img className={classes.imagen} src={Lengua} alt="lengua" />
-                  <Typography className={classes.heading}>Lengua</Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails  className={classes.content}> 
-                  <Typography>
-                    <div className={classes.botones}>
-                      <Link to={{ pathname: '/lengua', state: { ej: 'Silabas'} }}>
-                        <Button  className={classes.boton} variant="contained">Silabas</Button>
-                      </Link>
-                      <Link to={{ pathname: '/lengua', state: { ej: 'Otro EJ'} }}>
-                        <Button  className={classes.boton} variant="contained">Otro EJ</Button>
-                      </Link>
-                      <Link to={{ pathname: '/lengua', state: { ej: 'Otro Ej 2'} }}>
-                        <Button  className={classes.boton} variant="contained">Otro Ej</Button>
-                      </Link>
-                    </div>
-                  </Typography>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            </div>
+        
         </Grid>
       </div>
     );
