@@ -98,11 +98,11 @@ render() {
           </Container>
         </div>
         </BrowserRouter>
-        <footer className={classes.footer}>
+        {/* <footer className={classes.footer}>
             <Container maxWidth="sm">
               <img src={FooterImg} alt="" />
             </Container>
-        </footer>
+        </footer> */}
       </div>
     );
   }

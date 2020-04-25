@@ -13,16 +13,17 @@ import Billetes from '../components/Ejercicios/Billetes';
 
 class Matematicas extends Component {
 
-  state = {
-    
-  };
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+    }
+  }
 
   render() {
-    // console.log(this.props.name);
-    console.log(this.props.location.state.ej);
     let ejercicio;
     if (this.props.location.state.ej === "Tablas") {
-      ejercicio = <Tablas name={this.props.name}></Tablas>;
+      ejercicio = <Tablas history={this.props.history} name={this.props.name}></Tablas>;
     }
     if (this.props.location.state.ej === "Sumas") {
       ejercicio = <Sumas></Sumas>;

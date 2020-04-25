@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Seleccion() {
+export default function Seleccion(props) {
   
     const classes = useStyles();
     
