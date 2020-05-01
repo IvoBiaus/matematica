@@ -9,10 +9,10 @@ import Home from './Home';
 import Barra from '../components/Barra';
 import Matematicas from './Matematicas';
 import Error from './Error';
-import FooterImg from '../images/footer.jpg';
+import Grid from '@material-ui/core/Grid'
 
 const Container = styled.div`
-  max-width: 980px;
+  ${'' /* max-width: 980px; */}
   margin: 0 auto;
 `;
 
@@ -31,6 +31,17 @@ const useStyles = theme => ({
     marginTop: 'auto',
     backgroundColor: '#FFC226',
   },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  imgFotter: {
+    width: '100%',
+  }
 });
 
 class App extends Component {
@@ -65,42 +76,49 @@ render() {
         <Hero name={this.state.mostrar} />
         <BrowserRouter>
         <div>
+        <Container>
         <Barra login={this.state.show}/>
-          <Container>
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
-              />
-              <Route
-                path="/Seleccion"
-                exact
-                component={Seleccion}
-              />
-              <Route
-                path="/puntajes"
-                exact
-                component={Puntajes}
-              />
-              <Route
-                path="/matematicas"
-                exact
-                render={(props) => <Matematicas {...props} name={this.state.name} />}
-              />
-              <Route
-                path="/Error"
-                exact
-                component={Error}
-              />
-              <Redirect to="/" />
-            </Switch>
+          <Grid>
+            <Grid item xs={12}> 
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+                />
+                <Route
+                  path="/Seleccion"
+                  exact
+                  component={Seleccion}
+                />
+                <Route
+                  path="/puntajes"
+                  exact
+                  component={Puntajes}
+                />
+                <Route
+                  path="/matematicas"
+                  exact
+                  render={(props) => <Matematicas {...props} name={this.state.name} />}
+                />
+                <Route
+                  path="/Error"
+                  exact
+                  component={Error}
+                />
+                <Redirect to="/" />
+              </Switch>
+            </Grid>
+            {/* <Grid item xs={3}>
+              <img className={classes.imgFotter} src={FooterImg} alt="" />
+            </Grid> */}
+          </Grid>
           </Container>
         </div>
         </BrowserRouter>
         {/* <footer className={classes.footer}>
-            <Container maxWidth="sm">
-              <img src={FooterImg} alt="" />
+            <Container className={classes.contenedroImg}>
+              <img className={classes.imgFotter} src={FooterImg} alt="" />
             </Container>
         </footer> */}
       </div>

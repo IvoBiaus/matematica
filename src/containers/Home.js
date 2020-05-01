@@ -3,14 +3,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles  } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Form from '../components/Form';
 import Api from '../controller/Api';
 import Modal from '@material-ui/core/Modal';
+import FooterImg from '../images/cat-looking.gif';
+
 
 const useStyles = theme => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -27,7 +28,18 @@ const useStyles = theme => ({
       border: '0',
       textAlign: 'center',
       transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
-  }
+  },  
+  imgFotter: {
+    width: '100%',
+  },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 });
 
 function getModalStyle() {
@@ -99,14 +111,19 @@ class Home extends Component {
           alignItems="center"
           justify="center"
           style={{ minHeight: '50vh' }}>
-          <div>
-            <h1>Bienvenido a las clases</h1>
-          </div>
-          <Form noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Ingresa tu nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
-            {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
-            <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
-          </Form>
+            <Grid item xs>
+              <div>
+                <h1>Bienvenido a las clases</h1>
+              </div>
+            </Grid>
+            <Grid item xs>
+                <TextField id="standard-basic" label="Ingresa tu nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
+                {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
+                <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
+            </Grid>
+        </Grid>
+        <Grid item xs={3} className={classes.contenedroImg}>
+           <img className={classes.imgFotter} src={FooterImg} alt="" />
         </Grid>
         <Modal
         open={this.state.open}

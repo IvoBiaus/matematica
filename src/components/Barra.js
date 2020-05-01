@@ -7,18 +7,23 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: '#19bb5a',
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    martinTop: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
   },
 }));
+
+
 
 const StyledLink = styled(Link)`
   color: #fff;
@@ -34,21 +39,23 @@ export default function ButtonAppBar(props) {
 
   return (
     <div>
+    
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography className={classes.title}>
             {props.login && <StyledLink to="/seleccion"> 
                 Ejercicios
             </StyledLink>}
             <StyledLink className={classes.menuButton} to="/puntajes">
                 Puntajes
             </StyledLink>
-          </Typography>
             <StyledLink to="/">
-                <Button color="inherit">Exit</Button>
+              <Button variant="contained" color="secondary">Salir</Button>
             </StyledLink>
+          </Typography>
         </Toolbar>
       </AppBar>
+    
     </div>
   );
 }
