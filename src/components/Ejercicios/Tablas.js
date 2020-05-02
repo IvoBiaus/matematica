@@ -96,16 +96,24 @@ class Tablas extends Component {
         <h1>Hola {this.props.name}</h1>
         <h2 className='titleCenter'>Practiequemos las Tablas</h2>
         <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
+
+
         <form className={classes.root}>
           {this.state.data.map((row) => (        
               <TextField id={row.id} label={row.operacion} />
           ))}
         </form>
+
+        
         <div>
           <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Volver</Button>
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
           {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true})} className={classes.boton}>Finalizar</Button>}
         </div>
+
+
+
+
         <Modal
         open={this.state.open}
         onClose={this.handleClose}

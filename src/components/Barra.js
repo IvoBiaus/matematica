@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     martinTop: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
 }));
 
@@ -30,7 +30,6 @@ const StyledLink = styled(Link)`
   font-weight: bold;
   text-transform: capitalize;
   text-decoration: none;
-  margin: 0 20px;
 `;
 
 export default function ButtonAppBar(props) {
@@ -43,15 +42,15 @@ export default function ButtonAppBar(props) {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title}>
-            {props.login && <StyledLink to="/seleccion"> 
-                Ejercicios
-            </StyledLink>}
             <StyledLink className={classes.menuButton} to="/puntajes">
                 Puntajes
             </StyledLink>
-            <StyledLink to="/">
+            {props.login && <StyledLink className={classes.menuButton} to="/seleccion"> 
+                Ejercicios
+            </StyledLink>}
+            {props.login && <StyledLink className={classes.menuButton} to="/">
               <Button variant="contained" color="secondary">Salir</Button>
-            </StyledLink>
+            </StyledLink> }
           </Typography>
         </Toolbar>
       </AppBar>

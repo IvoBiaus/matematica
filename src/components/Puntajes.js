@@ -8,6 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Api from '../controller/Api';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = {
   root: {
@@ -16,6 +19,20 @@ const useStyles = {
   table: {
     height: '400px',  
     width: '300px',
+  },
+  botonError: {
+    marginRight: 16,
+    marginTop: 5,
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
+    borderRadius: '200px',
+    display: 'inline-block',
+    fontSize: '15px',
+    height: '40px',
+    width: '200px',
+    border: '0',
+    textAlign: 'center',
+    transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   },
 };
 
@@ -116,6 +133,9 @@ class Puntajes extends React.Component {
               </Table>
             </TableContainer>
           </Grid>
+        <Grid item xs="12" md={"3"}>
+          <Button className={classes.botonError} variant="contained" component={Link} to={'/'}>Volver</Button>
+        </Grid>
         </Grid>
       </div>
       </div>

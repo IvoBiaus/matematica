@@ -42,8 +42,8 @@ class Matematicas extends Component {
           justify="center"
           style={{ minHeight: '50vh' }}>
           <Grid item xs={12} md={6}>
-     {ejercicio}
-     </Grid>
+            {ejercicio}
+          </Grid>
      </Grid>
     );
   }
