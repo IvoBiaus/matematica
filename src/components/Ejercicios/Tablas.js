@@ -83,6 +83,7 @@ class Tablas extends Component {
       data3: [],
       open: false,
       setOpen: '',
+      resultados: [],
     };
   }
 
@@ -114,14 +115,22 @@ class Tablas extends Component {
   
   avanzarNivel(e) {
     this.setState({nivel: this.state.nivel + 1});
-
+    console.log(this.state.resultados);
+    this.setState({resultados: []});
     Api.obtenerNivelTablas(this.state.nivel + 1, this.resultTablas.bind(this));
   }
 
-  retrocederNivel(e) {
-    this.setState({nivel: this.state.nivel - 1});
+  // retrocederNivel(e) {
+  //   this.setState({nivel: this.state.nivel - 1});
 
-    Api.obtenerNivelTablas(this.state.nivel - 1, this.resultTablas.bind(this));
+  //   // Api.obtenerNivelTablas(this.state.nivel - 1, this.resultTablas.bind(this));
+  // }
+
+  guardarResultado(operacion, e) {
+    let val = e.target.value;
+    const array = this.state.resultados;
+    array[e.target.id - 1] = ([operacion, val]);
+    this.setState({resultados: array});
   }
 
   render() {
@@ -150,7 +159,8 @@ class Tablas extends Component {
                   }
                 }}
                 id={row.id} 
-                label={row.operacion} />
+                label={row.operacion}
+                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
             ))}
         </form>}
 
@@ -199,7 +209,8 @@ class Tablas extends Component {
         
         <div>
           <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Salir</Button>
-          {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>}
+          {/* No tiene sentido retrocederNivel ? */}
+          {/* {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>} */}
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
           {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true})} className={classes.boton}>Finalizar</Button>}
         </div>
