@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
     },
+    imgError: {
+      width: '50%',
+    },
   }));
 
 function Error(props) {
@@ -37,9 +40,9 @@ function Error(props) {
           style={{ minHeight: '50vh' }}>
             <div>
                 <div className={classes.root}>
-                    <img src={ErrorImg} alt="error" />
-                    <h1 className='titleCenter'>Hubo un error de comunicación con el servidor</h1>
-                    <h2>Intenta nuevamente!!</h2>
+                    <img className={classes.imgError} src={ErrorImg} alt="error" />
+                    <h1 className='titleCenter'>Algo salió Mal</h1>
+                    <h2>Intentá de nuevo, si vuelve a salir esta pantalla avisa a la seño!!</h2>
                     <Button className={classes.botonError} variant="contained" component={Link} to={'/'}>Salir</Button>
                     {/* <Button variant="contained" onClick={() => props.history.go(-2)}> Volver </Button> */}
                 </div>

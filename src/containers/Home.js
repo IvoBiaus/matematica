@@ -113,11 +113,11 @@ class Home extends Component {
           style={{ minHeight: '50vh' }}>
             <Grid item xs>
               <div>
-                <h1>Bienvenido a las clases</h1>
+                <h1>Bienvenido a clases</h1>
               </div>
             </Grid>
             <Grid item xs>
-                <TextField id="standard-basic" label="Ingresa tu nombre" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
+                <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
                 {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
                 <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
             </Grid>

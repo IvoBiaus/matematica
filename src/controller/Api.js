@@ -60,9 +60,9 @@ class Api {
                 //Obtengo resultados
                 const results = responseData;
                 
-                resultTablas(results, null);
+                resultTablas(results, nivel, null);
             }).catch(error => {
-                resultTablas(null, error);
+                resultTablas(null, nivel, error);
             });
     }
 

@@ -22,15 +22,18 @@ const useStyles = theme => ({
     },
   },
   boton: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
     marginRight: 16,
-    marginTop: 20,
+    marginTop: 5,
+    backgroundColor: '#FFFFFF',
+    color: '#000000',
+    borderRadius: '200px',
+    display: 'inline-block',
+    fontSize: '15px',
+    height: '40px',
+    width: '200px',
+    border: '0',
+    textAlign: 'center',
+    transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   },
   paper: {
     position: 'absolute',
@@ -39,6 +42,23 @@ const useStyles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  labelRoot: {
+    fontSize: 30,
+    color: "green",
+    "&$labelFocused": {
+      color: "blue",
+      fontSize: 20,
+    }
+  },
+  labelFocused: {},
+  input: {
+    fontSize: '32px',
+    color: '#FFFFFF',
+  },
+  notchedOutline: {
+    borderWidth: "2px",
+    borderColor: "white !important",
+  }
 });
 
 function getModalStyle() {
@@ -58,7 +78,9 @@ class Tablas extends Component {
     super(props);
     this.state = {
       nivel: 1,
-      data: [],
+      data1: [],
+      data2: [],
+      data3: [],
       open: false,
       setOpen: '',
     };
@@ -72,13 +94,21 @@ class Tablas extends Component {
   {
     Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
   }
-  resultTablas (ejercicios, error)
+  resultTablas (ejercicios, nivel, error)
   {
     if(error != null) {
       this.props.history.push('/Error')
       return;
     }
-    this.setState({data : ejercicios })
+    if(nivel === 1) {
+      this.setState({data1 : ejercicios })
+    }
+    if(nivel === 2) {
+      this.setState({data2 : ejercicios })
+    }
+    if(nivel === 3) {
+      this.setState({data3 : ejercicios })
+    }
   }
 
   
@@ -88,25 +118,88 @@ class Tablas extends Component {
     Api.obtenerNivelTablas(this.state.nivel + 1, this.resultTablas.bind(this));
   }
 
+  retrocederNivel(e) {
+    this.setState({nivel: this.state.nivel - 1});
+
+    Api.obtenerNivelTablas(this.state.nivel - 1, this.resultTablas.bind(this));
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <div className='column'>
         <h1>Hola {this.props.name}</h1>
-        <h2 className='titleCenter'>Practiequemos las Tablas</h2>
+        <h2 className='titleCenter'>Practiquemos las Tablas</h2>
         <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
 
 
-        <form className={classes.root}>
-          {this.state.data.map((row) => (        
-              <TextField id={row.id} label={row.operacion} />
-          ))}
-        </form>
+        {this.state.nivel === 1 && <form className={classes.root}>
+          {this.state.data1.map((row) => (        
+              <TextField 
+                variant="outlined" 
+                InputLabelProps={{
+                  classes: {
+                    root: classes.labelRoot,
+                    focused: classes.labelFocused
+                  }
+                }}
+                InputProps={{
+                  classes : {
+                    input: classes.input,
+                    notchedOutline: classes.notchedOutline,
+                  }
+                }}
+                id={row.id} 
+                label={row.operacion} />
+            ))}
+        </form>}
+
+        {this.state.nivel === 2 && <form className={classes.root}>
+          {this.state.data2.map((row) => (        
+              <TextField 
+                variant="outlined" 
+                InputLabelProps={{
+                  classes: {
+                    root: classes.labelRoot,
+                    focused: classes.labelFocused
+                  }
+                }}
+                InputProps={{
+                  classes : {
+                    input: classes.input,
+                    notchedOutline: classes.notchedOutline,
+                  }
+                }}
+                id={row.id} 
+                label={row.operacion} />
+            ))}
+        </form>}
+
+        {this.state.nivel === 3 && <form className={classes.root}>
+          {this.state.data3.map((row) => (        
+              <TextField 
+                variant="outlined" 
+                InputLabelProps={{
+                  classes: {
+                    root: classes.labelRoot,
+                    focused: classes.labelFocused
+                  }
+                }}
+                InputProps={{
+                  classes : {
+                    input: classes.input,
+                    notchedOutline: classes.notchedOutline,
+                  }
+                }}
+                id={row.id} 
+                label={row.operacion} />
+            ))}
+        </form>}
 
         
         <div>
-          <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Volver</Button>
+          <Button className={classes.boton} variant="contained" component={Link} to={'/seleccion'}>Salir</Button>
+          {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>}
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
           {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true})} className={classes.boton}>Finalizar</Button>}
         </div>
