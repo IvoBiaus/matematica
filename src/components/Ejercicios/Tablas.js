@@ -145,6 +145,7 @@ class Tablas extends Component {
         {this.state.nivel === 1 && <form className={classes.root}>
           {this.state.data1.map((row) => (        
               <TextField 
+                key={row.id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -167,6 +168,7 @@ class Tablas extends Component {
         {this.state.nivel === 2 && <form className={classes.root}>
           {this.state.data2.map((row) => (        
               <TextField 
+                key={row.id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -181,13 +183,15 @@ class Tablas extends Component {
                   }
                 }}
                 id={row.id} 
-                label={row.operacion} />
+                label={row.operacion}
+                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
             ))}
         </form>}
 
         {this.state.nivel === 3 && <form className={classes.root}>
           {this.state.data3.map((row) => (        
               <TextField 
+                key={row.id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -202,7 +206,8 @@ class Tablas extends Component {
                   }
                 }}
                 id={row.id} 
-                label={row.operacion} />
+                label={row.operacion}
+                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
             ))}
         </form>}
 

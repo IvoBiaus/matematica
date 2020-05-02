@@ -133,7 +133,7 @@ class Puntajes extends React.Component {
               </Table>
             </TableContainer>
           </Grid>
-        <Grid item xs="12" md={"3"}>
+        <Grid>
           <Button className={classes.botonError} variant="contained" component={Link} to={'/'}>Volver</Button>
         </Grid>
         </Grid>
