@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Tablas from '../components/Ejercicios/Tablas';
-import Sumas from '../components/Ejercicios/Sumas';
-import Billetes from '../components/Ejercicios/Billetes';
+import Tablas from '../components/Ejercicios/Tablas/Tablas';
+import Sumas from '../components/Ejercicios/Sumas/Sumas';
+import Billetes from '../components/Ejercicios/ByM/BienvenidoByM';
 import Grid from '@material-ui/core/Grid';
 
 
@@ -32,7 +32,7 @@ class Matematicas extends Component {
       ejercicio = <Sumas></Sumas>;
     }
     if (this.props.location.state.ej === "Billetes") {
-      ejercicio = <Billetes></Billetes>;
+      ejercicio = <Billetes history={this.props.history} name={this.props.name}></Billetes>;
     }
     return (
       <Grid  container

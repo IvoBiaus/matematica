@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { withStyles  } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Hero from '../components/Hero'
 import Puntajes from '../components/Puntajes';
@@ -9,7 +9,10 @@ import Home from './Home';
 import Barra from '../components/Barra';
 import Matematicas from './Matematicas';
 import Error from './Error';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
+import AppByM1 from '../components/Ejercicios/ByM/AppByM1';
+import AppByM2 from '../components/Ejercicios/ByM/AppByM2';
+import AppByM3 from '../components/Ejercicios/ByM/AppByM3';
 
 const Container = styled.div`
   ${'' /* max-width: 980px; */}
@@ -46,75 +49,90 @@ const useStyles = theme => ({
 
 class App extends Component {
 
-state = {
-  mostrar: 'Bienvenido',
-  name: '',
-  show: false
-};
-
-resetName = () => {
-  this.setState({
+  state = {
     mostrar: 'Bienvenido',
-    show: false,
-  })
-}
+    name: '',
+    show: false
+  };
 
-changeName = (newName) => {
-  this.setState({name: newName})
-}
+  resetName = () => {
+    this.setState({
+      mostrar: 'Bienvenido',
+      show: false,
+    })
+  }
 
-handleClick = () => {
+  changeName = (newName) => {
+    this.setState({ name: newName })
+  }
+
+  handleClick = () => {
     this.setState({
       mostrar: this.state.mostrar + ' ' + this.state.name,
       show: true,
     })
-};
-render() {
-  const { classes } = this.props;
+  };
+  render() {
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Hero name={this.state.mostrar} />
         <BrowserRouter>
-        <div>
-        <Container>
-        <Barra login={this.state.show}/>
-          <Grid>
-            <Grid item xs={12}> 
-              <Switch>
-                <Route
-                  path="/"
-                  exact
-                  render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
-                />
-                <Route
-                  path="/Seleccion"
-                  exact
-                  component={Seleccion}
-                />
-                <Route
-                  path="/puntajes"
-                  exact
-                  component={Puntajes}
-                />
-                <Route
-                  path="/matematicas"
-                  exact
-                  render={(props) => <Matematicas {...props} name={this.state.name} />}
-                />
-                <Route
-                  path="/Error"
-                  exact
-                  component={Error}
-                />
-                <Redirect to="/" />
-              </Switch>
-            </Grid>
-            {/* <Grid item xs={3}>
+          <div>
+            <Container>
+              <Barra login={this.state.show} />
+              <Grid>
+                <Grid item xs={12}>
+                  <Switch>
+                    <Route
+                      path="/"
+                      exact
+                      render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+                    />
+                    <Route
+                      path="/Seleccion"
+                      exact
+                      component={Seleccion}
+                    />
+                    <Route
+                      path="/puntajes"
+                      exact
+                      component={Puntajes}
+                    />
+                    <Route
+                      path="/matematicas"
+                      exact
+                      render={(props) => <Matematicas {...props} name={this.state.name} />}
+                    />
+                    <Route
+                      path="/AppByM1"
+                      exact
+                      component={AppByM1}
+                    />
+                    <Route
+                      path="/AppByM2"
+                      exact
+                      component={AppByM2}
+                    />
+                    <Route
+                      path="/AppByM3"
+                      exact
+                      component={AppByM3}
+                    />
+                    <Route
+                      path="/Error"
+                      exact
+                      component={Error}
+                    />
+                    <Redirect to="/" />
+                  </Switch>
+                </Grid>
+                {/* <Grid item xs={3}>
               <img className={classes.imgFotter} src={FooterImg} alt="" />
             </Grid> */}
-          </Grid>
-          </Container>
-        </div>
+              </Grid>
+            </Container>
+          </div>
         </BrowserRouter>
         {/* <footer className={classes.footer}>
             <Container className={classes.contenedroImg}>

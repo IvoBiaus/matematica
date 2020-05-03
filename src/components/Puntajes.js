@@ -9,9 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Api from '../controller/Api';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
-
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -214,7 +212,7 @@ class Puntajes extends React.Component {
               </ExpansionPanel>
             </Grid>
             <Grid>
-              <Button className={classes.botonError} variant="contained" component={Link} to={'/'}>Volver</Button>
+              <Button className={classes.botonError} variant="contained" onClick={() => this.props.history.go(-1)}>Volver</Button>
             </Grid>
           </Grid>
         </div>

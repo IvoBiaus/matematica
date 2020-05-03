@@ -3,7 +3,7 @@ import { withStyles  } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import Api from '../../controller/Api';
+import Api from '../../../controller/Api';
 import Modal from '@material-ui/core/Modal';
 
 
