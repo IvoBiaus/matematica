@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Matematica from '../images/matematica.jpg';
+import Matematica from '../images/matematica.png';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import FooterImg from '../images/cat-looking.gif';
@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'center',
     margin: "4px 0",
     paddingLeft: '55px',
-  },
-  imagen: {
-    height: '100px',
   },
   panel: {
     backgroundColor: 'rgb(49, 185, 132)',
@@ -78,7 +75,7 @@ export default function Seleccion(props) {
               <h2>Tenés 3 niveles por cada problema</h2>
             </div>
             <Grid item xs>
-                <img className={classes.imagen} src={Matematica} alt="matematica" />
+                <img src={Matematica} className="App-logo" alt="matematica" />
             </Grid>
             <Grid item xs>
                 <Typography>
