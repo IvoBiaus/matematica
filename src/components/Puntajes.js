@@ -50,7 +50,7 @@ const useStyles = {
     transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   },
   panel: {
-    backgroundColor: "#FFC226",
+    backgroundColor: "#19bb5a",
     width: '300px',
   },
   '@global': {
