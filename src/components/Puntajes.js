@@ -10,6 +10,7 @@ import Api from '../controller/Api';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -24,7 +25,17 @@ const useStyles = {
   },
   table: {
     height: '400px',
-    width: '300px',
+    width: '250px',
+  },
+  titlePuntajes: {
+    fontSize: "24px",
+    color: "#FFFFFF",
+    fontWeight: "bold",
+  },
+  detallePuntajes: {
+    fontSize: "16px",
+    color: "#000000",
+    fontWeight: "bold",
   },
   botonError: {
     marginRight: 16,
@@ -42,7 +53,7 @@ const useStyles = {
   },
   panel: {
     backgroundColor: "#FFC226",
-    width: '350px',
+    width: '300px',
   },
   '@global': {
     '*::-webkit-scrollbar': {
@@ -97,19 +108,25 @@ class Puntajes extends React.Component {
                 <ExpansionPanelDetails>
                   <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-label="simple table">
+                      <colgroup>
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '20%' }} />
+                      </colgroup>
                       <TableHead>
                         <TableRow>
-                          <TableCell>Nombre</TableCell>
-                          <TableCell align="right">Puntos</TableCell>
+                          <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
+                          <Divider orientation="vertical" flexItem />
+                          <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {this.state.puntajes.map((row) => (
                           <TableRow key={row.nombre}>
-                            <TableCell component="th" scope="row">
+                            <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <TableCell align="right">{row.puntos}</TableCell>
+                            <Divider orientation="vertical" flexItem />
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -123,25 +140,32 @@ class Puntajes extends React.Component {
                 <ExpansionPanelSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
-                  id="panel1a-header">
+                  id="panel1a-header"
+                >
                   <h2 className='titleLeft'>Sumas</h2>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-label="simple table">
+                      <colgroup>
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '20%' }} />
+                      </colgroup>
                       <TableHead>
                         <TableRow>
-                          <TableCell>Nombre</TableCell>
-                          <TableCell align="right">Puntos</TableCell>
+                          <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
+                          <Divider orientation="vertical" flexItem />
+                          <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {this.state.puntajes.map((row) => (
                           <TableRow key={row.nombre}>
-                            <TableCell component="th" scope="row">
+                            <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <TableCell align="right">{row.puntos}</TableCell>
+                            <Divider orientation="vertical" flexItem />
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -155,25 +179,32 @@ class Puntajes extends React.Component {
                 <ExpansionPanelSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
-                  id="panel1a-header">
+                  id="panel1a-header"
+                >
                   <h2 className='titleLeft'>Billetes</h2>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-label="simple table">
+                      <colgroup>
+                        <col style={{ width: '10%' }} />
+                        <col style={{ width: '20%' }} />
+                      </colgroup>
                       <TableHead>
                         <TableRow>
-                          <TableCell>Nombre</TableCell>
-                          <TableCell align="right">Puntos</TableCell>
+                          <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
+                          <Divider orientation="vertical" flexItem />
+                          <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {this.state.puntajes.map((row) => (
                           <TableRow key={row.nombre}>
-                            <TableCell component="th" scope="row">
+                            <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <TableCell align="right">{row.puntos}</TableCell>
+                            <Divider orientation="vertical" flexItem />
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
