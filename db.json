@@ -1,0 +1,164 @@
+{
+    "Fer": {
+        "existe": false
+    },
+    "error": {
+        "existe": true
+    },
+    "puntajes": [
+        {
+            "nombre": "Fernando",
+            "puntos": "100"
+        },
+        {
+            "nombre": "Pipo",
+            "puntos": "200"
+        },
+        {
+            "nombre": "Lucas",
+            "puntos": "41414141441"
+        },
+        {
+            "nombre": "Juan",
+            "puntos": "300"
+        },
+        {
+            "nombre": "Pepe",
+            "puntos": "1000"
+        },
+        {
+            "nombre": "a",
+            "puntos": "50000"
+        },
+        {
+            "nombre": "b",
+            "puntos": "50000"
+        },
+        {
+            "nombre": "c",
+            "puntos": "50000"
+        },
+        {
+            "nombre": "d",
+            "puntos": "50000"
+        },
+        {
+            "nombre": "e",
+            "puntos": "50000"
+        }
+    ],
+    "1": [
+        {
+            "id": "1",
+            "operacion": "2x2"
+        },
+        {
+            "id": "2",
+            "operacion": "2x2"
+        },
+        {
+            "id": "3",
+            "operacion": "2x3"
+        },
+        {
+            "id": "4",
+            "operacion": "2x6"
+        },
+        {
+            "id": "5",
+            "operacion": "3x3"
+        },
+        {
+            "id": "6",
+            "operacion": "4x4"
+        },
+        {
+            "id": "7",
+            "operacion": "4x5"
+        },
+        {
+            "id": "8",
+            "operacion": "5x5"
+        },
+        {
+            "id": "9",
+            "operacion": "8x9"
+        }
+    ],
+    "2": [
+        {
+            "id": "1",
+            "operacion": "20x2"
+        },
+        {
+            "id": "2",
+            "operacion": "30x2"
+        },
+        {
+            "id": "3",
+            "operacion": "22x3"
+        },
+        {
+            "id": "4",
+            "operacion": "2x61"
+        },
+        {
+            "id": "5",
+            "operacion": "3x3"
+        },
+        {
+            "id": "6",
+            "operacion": "4x4"
+        },
+        {
+            "id": "7",
+            "operacion": "4x5"
+        },
+        {
+            "id": "8",
+            "operacion": "5x5"
+        },
+        {
+            "id": "9",
+            "operacion": "8x9"
+        }
+    ],
+    "3": [
+        {
+            "id": "1",
+            "operacion": "12312x2"
+        },
+        {
+            "id": "2",
+            "operacion": "30x2123123"
+        },
+        {
+            "id": "3",
+            "operacion": "22x112433"
+        },
+        {
+            "id": "4",
+            "operacion": "2x61"
+        },
+        {
+            "id": "5",
+            "operacion": "3x3"
+        },
+        {
+            "id": "6",
+            "operacion": "4x4"
+        },
+        {
+            "id": "7",
+            "operacion": "4x5"
+        },
+        {
+            "id": "8",
+            "operacion": "5x5"
+        },
+        {
+            "id": "9",
+            "operacion": "8x9"
+        }
+    ]
+}

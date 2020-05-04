@@ -2,7 +2,7 @@ class Api {
 
     exsiteUsuario(nombreUsuario, resultadoUsuario) {
 
-        const url = 'http://demo9269423.mockable.io/';
+        const url = 'http://localhost:3001/';
         const method= "user/";
 
         const endpoint = `${url}${method}${nombreUsuario}`;
@@ -23,7 +23,7 @@ class Api {
     }
 
     getPuntajes(resultPuntajes) {
-        const url = 'http://demo9269423.mockable.io/';
+        const url = 'http://localhost:3001/';
         const method= "puntajes"
 
         const endpoint = `${url}${method}`;
@@ -45,7 +45,7 @@ class Api {
     }
 
     obtenerNivelTablas(nivel, resultTablas) {
-        const url = 'http://demo9269423.mockable.io/';
+        const url = 'http://localhost:3001/';
         const method= "matematica/tablas/"
 
         const endpoint = `${url}${method}${nivel}`;

@@ -15,8 +15,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "json-server": "json-server --watch db.json --routes routes.json --port 3001",
+    "dev": "concurrently \"npm start\" \"npm run json-server\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "json-server": "^0.16.1"
   }
 }
