@@ -1,10 +1,14 @@
 {
-    "Fer": {
-        "existe": false
-    },
-    "error": {
-        "existe": true
-    },
+    "user": [  
+        {
+            "id": "Fer",
+            "existe": false
+        },
+        {
+            "id": "error",
+            "existe": true
+        }
+    ],
     "puntajes": [
         {
             "nombre": "Fernando",
