@@ -4,9 +4,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import TextField from '@material-ui/core/TextField';
+// import Link from '@material-ui/core/Link';
+// import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormLabel from '@material-ui/core/FormLabel';
 import diezpesos from './images/billetesymonedas/billetes/diezpesos.png';
 import quinientospesos from './images/billetesymonedas/billetes/quinientospesos.png';
 import kiosco from './images/billetesymonedas/m/kiosco.png';
@@ -26,14 +32,11 @@ export default function StickyFooter(props) {
           Billetes y Monedas 
         </Typography>
         <Typography variant="h6" component="h6" gutterBottom>
-          {'Si quiero comprar 5 golosinas distintas, con este dinero, ¿Cuántas golosinas puedo comprar?'}
+          {'Si quiero comprar 5 golosinas distintas, ¿Me alcanza con éste dinero?'}
         </Typography>
-        <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
         <div>
+        <ErrorRadios/>
         <p></p>
-        <Button variant="contained" size="small" color="primary" className={classes.margin}>
-          Enviar
-        </Button>
        
       </div>
       </Container>
@@ -41,9 +44,8 @@ export default function StickyFooter(props) {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
         <App />
-          <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Salir</Button>
-          <Typography variant="body1">Grupo 5.</Typography>
-          <Copyright />
+        <p></p>
+        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
         </Container>
       </footer>
     </div>
@@ -65,6 +67,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 4),
     marginTop: 'left',
     backgroundColor: '#FFC226',
+  },
+  formControl: {
+    margin: theme.spacing(3),
+  },
+  button: {
+    margin: theme.spacing(1, 1, 0, 0),
   },
   boton: {
     marginRight: 16,
@@ -91,6 +99,7 @@ function App() {
         <img src={quinientospesos}/>
         <h5>+</h5>
         <img src={diezpesos}/>
+        <p></p>
         <img src={kiosco}/>
         
         </header>
@@ -99,17 +108,61 @@ function App() {
 }
 
 
+function ErrorRadios() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState(false);
+  const [helperText, setHelperText] = React.useState('');
 
-function Copyright() {
+  const handleRadioChange = (event) => {
+    setValue(event.target.value);
+    setHelperText(' ');
+    setError(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (value === 'best') {
+      setHelperText('Respuesta correcta!');
+      setError(false);
+    } else if (value === 'worst') {
+      setHelperText('Respuesta equivocada !');
+      setError(true);
+    } else {
+      setHelperText('¿Cual es la respuesta?');
+      setError(true);
+    }
+  };
   return (
-    <Typography variant="body2" color="textSecondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://uade.edu.ar/">
-        Uade
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+    <form onSubmit={handleSubmit}>
+      <FormControl component="fieldset" error={error} className={classes.formControl}>
+        <FormLabel component="legend">Elige una opción</FormLabel>
+        <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
+          <FormControlLabel value="best" control={<Radio />} label="Si" />
+          <FormControlLabel value="worst" control={<Radio />} label="No" />
+        </RadioGroup>
+        <FormHelperText>{helperText}</FormHelperText>
+        <Button type="submit" variant="outlined" color="primary" className={classes.button}>
+          Enviar
+        </Button>
+        </FormControl>
+    </form>
   );
 }
+
+
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://uade.edu.ar/">
+//         Uade
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 

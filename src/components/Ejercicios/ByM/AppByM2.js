@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import cienpesos from './images/billetesymonedas/billetes/cienpesos.png';
@@ -25,7 +25,7 @@ export default function StickyFooter(props) {
           Billetes y Monedas 
         </Typography>
         <Typography variant="h6" component="h6" gutterBottom>
-          {'Con el billete, cuantas golosinas puedo comprar ???'}
+          {'Con ese billete, ¿Cuántas golosinas puedo comprar ?'}
         </Typography>
         <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
         <div>
@@ -40,9 +40,8 @@ export default function StickyFooter(props) {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
         <App />
-          <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Salir</Button>
-          <Typography variant="body1">Grupo 5.</Typography>
-          <Copyright />
+        <p></p>
+        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
         </Container>
       </footer>
     </div>
@@ -88,7 +87,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={cienpesos}/>
-        {/* <h5></h5> */}
+        <p></p>
         <img src={gol1}/>
         
       </header>
@@ -98,16 +97,16 @@ function App() {
 
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://uade.edu.ar/">
-        Uade
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://uade.edu.ar/">
+//         Uade
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 

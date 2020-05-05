@@ -32,15 +32,15 @@ class Bienvenido extends Component {
                     direction="column"
                     alignItems="center"
                     justify="center"
-                    style={{ minHeight: '90vh' }}>
+                    style={{ minHeight: '20vh' }}>
                     <div className='column'>
                         <h1> {this.props.name} selecciona el nivel a Jugar !</h1>
                         <div>
-                            <h2> Facil</h2>
+                            <h2> Fácil</h2>
                             <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM1'} onClick={this.props.onClick} >Nivel 1</Button>
                             <h2> Normal</h2>
                             <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM2'} onClick={this.props.onClick} >Nivel 2</Button>
-                            <h2> Dificil</h2>
+                            <h2> Difícil</h2>
                             <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM3'} onClick={this.props.onClick} >Nivel 3</Button>
                         </div>
                     </div>

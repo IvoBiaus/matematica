@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import cincopesos from './images/billetesymonedas/monedas/cincopesos.png';
@@ -41,9 +41,7 @@ export default function StickyFooter(props) {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <App />
-          <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Salir</Button>
-          <Typography variant="body1">Grupo 5.</Typography>
-          <Copyright />
+          <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
         </Container>
       </footer>
     </div>
@@ -100,16 +98,16 @@ function App() {
 
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://uade.edu.ar/">
-        Uade
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://uade.edu.ar/">
+//         Uade
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
