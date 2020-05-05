@@ -19,11 +19,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = {
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   table: {
     height: '400px',
     width: '250px',
+    overflowX: 'hidden',
   },
   titlePuntajes: {
     fontSize: "24px",
@@ -72,7 +73,9 @@ class Puntajes extends React.Component {
   constructor() {
     super();
     this.state = {
-      puntajes: []
+      puntajesTablas: [],
+      puntajesSumas: [],
+      puntajesBilletes: []
     }
   }
 
@@ -84,7 +87,9 @@ class Puntajes extends React.Component {
       this.props.history.push('/Error')
       return;
     }
-    this.setState({ puntajes: puntajes })
+    this.setState({ puntajesTablas: puntajes.tablas.sort((a, b) => a.puntos - b.puntos) })
+    this.setState({ puntajesSumas: puntajes.sumas })
+    this.setState({ puntajesBilletes: puntajes.billetes })
   }
 
   render() {
@@ -93,7 +98,12 @@ class Puntajes extends React.Component {
       <div>
         <h1 className='titleCenter'>Puntaje de los almunos</h1>
         <div>
-          <Grid container className={classes.root} spacing={2}>
+          <Grid container className={classes.root} 
+          direction="column"
+          alignItems="center"
+          justify="center"
+          
+          style={{ minHeight: '50vh' }} >
             <Grid item xs>
               <ExpansionPanel className={classes.panel}>
                 <ExpansionPanelSummary
@@ -118,7 +128,7 @@ class Puntajes extends React.Component {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {this.state.puntajes.map((row) => (
+                        {this.state.puntajesTablas.map((row) => (
                           <TableRow key={row.nombre}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
@@ -157,7 +167,7 @@ class Puntajes extends React.Component {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {this.state.puntajes.map((row) => (
+                        {this.state.puntajesSumas.map((row) => (
                           <TableRow key={row.nombre}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
@@ -196,7 +206,7 @@ class Puntajes extends React.Component {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {this.state.puntajes.map((row) => (
+                        {this.state.puntajesBilletes.map((row) => (
                           <TableRow key={row.nombre}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}

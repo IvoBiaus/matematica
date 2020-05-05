@@ -1,4 +1,7 @@
 {
-    "/user/:id": "/user/:id",
-    "matematica/tablas/": "/$1"
+    "/user/Fer": "/userFer",
+    "/user/error": "/userError",
+    "/matematica/tablas/1": "/tablas1",
+    "/matematica/tablas/2": "/tablas2",
+    "/matematica/tablas/3": "/tablas3"
 }

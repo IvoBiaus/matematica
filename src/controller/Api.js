@@ -36,7 +36,7 @@ class Api {
             }).then (responseData => {
                 // console.log("respuesta bruta",responseData);
                 //Obtengo resultados
-                const results = responseData.sort((a, b) => a.puntos - b.puntos);
+                const results = responseData;
                 
                 resultPuntajes(results, null);
             }).catch(error => {

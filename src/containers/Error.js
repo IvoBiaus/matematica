@@ -42,7 +42,7 @@ function Error(props) {
                 <div className={classes.root}>
                     <img className={classes.imgError} src={ErrorImg} alt="error" />
                     <h1 className='titleCenter'>Algo salió Mal</h1>
-                    <h2>Intentá de nuevo, si vuelve a salir esta pantalla avisa a la seño!!</h2>
+                    {/* <h2>Intentá de nuevo, si vuelve a salir esta pantalla avisa a la seño!!</h2> */}
                     <Button className={classes.botonError} variant="contained" component={Link} to={'/'}>Salir</Button>
                     {/* <Button variant="contained" onClick={() => props.history.go(-2)}> Volver </Button> */}
                 </div>

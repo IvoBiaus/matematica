@@ -1,57 +1,139 @@
 {
-    "user": [  
-        {
-            "id": "Fer",
-            "existe": false
-        },
-        {
-            "id": "error",
-            "existe": true
-        }
-    ],
-    "puntajes": [
-        {
-            "nombre": "Fernando",
-            "puntos": "100"
-        },
-        {
-            "nombre": "Pipo",
-            "puntos": "200"
-        },
-        {
-            "nombre": "Lucas",
-            "puntos": "41414141441"
-        },
-        {
-            "nombre": "Juan",
-            "puntos": "300"
-        },
-        {
-            "nombre": "Pepe",
-            "puntos": "1000"
-        },
-        {
-            "nombre": "a",
-            "puntos": "50000"
-        },
-        {
-            "nombre": "b",
-            "puntos": "50000"
-        },
-        {
-            "nombre": "c",
-            "puntos": "50000"
-        },
-        {
-            "nombre": "d",
-            "puntos": "50000"
-        },
-        {
-            "nombre": "e",
-            "puntos": "50000"
-        }
-    ],
-    "1": [
+    "userFer": {
+        "existe": false
+    },
+    "userError": {
+        "existe": true
+    },
+    "puntajes": {
+        "tablas": [
+            {
+                "nombre": "Ejemplo",
+                "puntos": "100"
+            },
+            {
+                "nombre": "de",
+                "puntos": "200"
+            },
+            {
+                "nombre": "Puntaje",
+                "puntos": "250"
+            },
+            {
+                "nombre": "de",
+                "puntos": "300"
+            },
+            {
+                "nombre": "Tablas",
+                "puntos": "1000"
+            },
+            {
+                "nombre": "a",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "b",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "c",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "d",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "e",
+                "puntos": "50000"
+            }
+        ],
+        "sumas": [
+            {
+                "nombre": "Ejemplo",
+                "puntos": "100"
+            },
+            {
+                "nombre": "de",
+                "puntos": "200"
+            },
+            {
+                "nombre": "Puntaje",
+                "puntos": "250"
+            },
+            {
+                "nombre": "de",
+                "puntos": "300"
+            },
+            {
+                "nombre": "Sumas",
+                "puntos": "1000"
+            },
+            {
+                "nombre": "a",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "b",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "c",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "d",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "e",
+                "puntos": "50000"
+            }
+        ],
+        "billetes": [
+            {
+                "nombre": "Ejemplo",
+                "puntos": "100"
+            },
+            {
+                "nombre": "de",
+                "puntos": "200"
+            },
+            {
+                "nombre": "Puntaje",
+                "puntos": "250"
+            },
+            {
+                "nombre": "de",
+                "puntos": "300"
+            },
+            {
+                "nombre": "biletes",
+                "puntos": "1000"
+            },
+            {
+                "nombre": "a",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "b",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "c",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "d",
+                "puntos": "50000"
+            },
+            {
+                "nombre": "e",
+                "puntos": "50000"
+            }
+        ]
+    },
+    "tablas1": [
         {
             "id": "1",
             "operacion": "2x2"
@@ -89,7 +171,7 @@
             "operacion": "8x9"
         }
     ],
-    "2": [
+    "tablas2": [
         {
             "id": "1",
             "operacion": "20x2"
@@ -127,7 +209,7 @@
             "operacion": "8x9"
         }
     ],
-    "3": [
+    "tablas3": [
         {
             "id": "1",
             "operacion": "12312x2"

@@ -71,7 +71,7 @@ export default function Seleccion(props) {
           justify="center"
           style={{ minHeight: '50vh' }}>
             <div>
-              <h1 className='titleCenter'>Elegí que vas a pracitar hoy</h1>
+              <h1 className='titleCenter'>Elegí que vas a practicar hoy</h1>
               <h2>Tenés 3 niveles por cada problema</h2>
             </div>
             <Grid item xs>
