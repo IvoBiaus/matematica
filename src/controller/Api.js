@@ -66,5 +66,27 @@ class Api {
             });
     }
 
+    obtenerNivelSumas(nivel, resultSumas) {
+        const url = 'http://localhost:3001/';
+        const method= "matematica/sumas/"
+
+        const endpoint = `${url}${method}${nivel}`;
+            fetch(endpoint
+            ).then ((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+                throw new Error(response.status);    
+            }).then (responseData => {
+                // console.log("respuesta bruta",responseData);
+                //Obtengo resultados
+                const results = responseData;
+                
+                resultSumas(results, nivel, null);
+            }).catch(error => {
+                resultSumas(null, nivel, error);
+            });
+    }
+
 }
 export default new Api();
