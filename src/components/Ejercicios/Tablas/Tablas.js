@@ -9,6 +9,7 @@ import Modal from '@material-ui/core/Modal';
 
 
 
+
 // const Container = styled.div`
 //   max-width: 980px;
 //   margin: 0 auto;
@@ -58,6 +59,14 @@ const useStyles = theme => ({
   notchedOutline: {
     borderWidth: "2px",
     borderColor: "white !important",
+  },
+  puntajeParcial: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: '400px',
+  },
+  nivel: {
+    textAlign: 'left',
   }
 });
 
@@ -81,6 +90,9 @@ class Tablas extends Component {
       data1: [],
       data2: [],
       data3: [],
+      puntos1: '---',
+      puntos2: '---',
+      puntos3: '---',
       open: false,
       setOpen: '',
       resultados: [],
@@ -114,6 +126,18 @@ class Tablas extends Component {
 
   
   avanzarNivel(e) {
+    //Calculo puntaje contra la api y seteo
+    if(this.state.nivel === 1) {
+      this.setState({puntos1 : 10 })
+    }
+    if(this.state.nivel === 2) {
+      this.setState({puntos2 : 9 })
+    }
+    if(this.state.nivel === 3) {
+      this.setState({puntos3 : 8 })
+    }
+
+    //Avanzo nivel - imprimo resultado para pruebas
     this.setState({nivel: this.state.nivel + 1});
     console.log(this.state.resultados);
     this.setState({resultados: []});
@@ -137,10 +161,28 @@ class Tablas extends Component {
     const { classes } = this.props;
     return (
       <div className='column'>
-        <h1>Hola {this.props.name}</h1>
-        <h2 className='titleCenter'>Practiquemos las Tablas</h2>
-        <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
+        <h1>Hola {this.props.name} - Estas en el Nivel {this.state.nivel}</h1>
+        <h2 className='titleLeft'>Practiquemos las Tablas</h2>
+        {this.state.nivel > 0 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 1</h3> 
+            
+            <h3>Puntos: {this.state.puntos1}</h3>
+          </div>}
 
+          {this.state.nivel > 1 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 2</h3> 
+            
+            <h3>Puntos: {this.state.puntos2}</h3>
+          </div>}
+
+          {this.state.nivel > 2 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 3</h3> 
+            
+            <h3>Puntos: {this.state.puntos3}</h3>
+          </div>}
 
         {this.state.nivel === 1 && <form className={classes.root}>
           {this.state.data1.map((row) => (        
@@ -217,7 +259,7 @@ class Tablas extends Component {
           {/* No tiene sentido retrocederNivel ? */}
           {/* {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>} */}
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
-          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true})} className={classes.boton}>Finalizar</Button>}
+          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true, puntos3: 8})} className={classes.boton}>Finalizar</Button>}
         </div>
 
 
@@ -232,7 +274,7 @@ class Tablas extends Component {
           <div style={getModalStyle()} className={classes.paper}>
             <h2 id="simple-modal-title">Terminaste los ejercicios</h2>
             <p id="simple-modal-description">
-              Tu puntaje es "xxxxxx"
+              Tu puntaje es 27
             </p>
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
           </div>

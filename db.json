@@ -140,15 +140,15 @@
         },
         {
             "id": "2",
-            "operacion": "2x2"
-        },
-        {
-            "id": "3",
             "operacion": "2x3"
         },
         {
+            "id": "3",
+            "operacion": "2x4"
+        },
+        {
             "id": "4",
-            "operacion": "2x6"
+            "operacion": "2x8"
         },
         {
             "id": "5",
@@ -156,95 +156,95 @@
         },
         {
             "id": "6",
-            "operacion": "4x4"
+            "operacion": "3x1"
         },
         {
             "id": "7",
-            "operacion": "4x5"
+            "operacion": "3x6"
         },
         {
             "id": "8",
-            "operacion": "5x5"
+            "operacion": "3x7"
         },
         {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "3x2"
         }
     ],
     "tablas2": [
         {
             "id": "1",
-            "operacion": "20x2"
-        },
-        {
-            "id": "2",
-            "operacion": "30x2"
-        },
-        {
-            "id": "3",
-            "operacion": "22x3"
-        },
-        {
-            "id": "4",
-            "operacion": "2x61"
-        },
-        {
-            "id": "5",
-            "operacion": "3x3"
-        },
-        {
-            "id": "6",
-            "operacion": "4x4"
-        },
-        {
-            "id": "7",
-            "operacion": "4x5"
-        },
-        {
-            "id": "8",
             "operacion": "5x5"
         },
         {
+            "id": "2",
+            "operacion": "5x6"
+        },
+        {
+            "id": "3",
+            "operacion": "5x9"
+        },
+        {
+            "id": "4",
+            "operacion": "4x4"
+        },
+        {
+            "id": "5",
+            "operacion": "4x10"
+        },
+        {
+            "id": "6",
+            "operacion": "20x2"
+        },
+        {
+            "id": "7",
+            "operacion": "2x9"
+        },
+        {
+            "id": "8",
+            "operacion": "6x6"
+        },
+        {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "6x3"
         }
     ],
     "tablas3": [
         {
             "id": "1",
-            "operacion": "12312x2"
+            "operacion": "9x7"
         },
         {
             "id": "2",
-            "operacion": "30x2123123"
+            "operacion": "9x8"
         },
         {
             "id": "3",
-            "operacion": "22x112433"
+            "operacion": "9x9"
         },
         {
             "id": "4",
-            "operacion": "2x61"
+            "operacion": "10x2"
         },
         {
             "id": "5",
-            "operacion": "3x3"
+            "operacion": "8x7"
         },
         {
             "id": "6",
-            "operacion": "4x4"
+            "operacion": "8x8"
         },
         {
             "id": "7",
-            "operacion": "4x5"
+            "operacion": "7x7"
         },
         {
             "id": "8",
-            "operacion": "5x5"
+            "operacion": "20x7"
         },
         {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "20x13"
         }
     ]
 }
