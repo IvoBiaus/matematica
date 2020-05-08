@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Api from '../controller/Api';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -123,7 +123,7 @@ class Puntajes extends React.Component {
                       <TableHead>
                         <TableRow>
                           <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
-                          <Divider orientation="vertical" flexItem />
+                          {/* <Divider orientation="vertical" flexItem /> */}
                           <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
@@ -133,7 +133,7 @@ class Puntajes extends React.Component {
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <Divider orientation="vertical" flexItem />
+                            {/* <Divider orientation="vertical" flexItem /> */}
                             <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}
@@ -162,7 +162,7 @@ class Puntajes extends React.Component {
                       <TableHead>
                         <TableRow>
                           <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
-                          <Divider orientation="vertical" flexItem />
+                          {/* <Divider orientation="vertical" flexItem /> */}
                           <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
@@ -172,7 +172,7 @@ class Puntajes extends React.Component {
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <Divider orientation="vertical" flexItem />
+                            {/* <Divider orientation="vertical" flexItem /> */}
                             <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}
@@ -201,7 +201,7 @@ class Puntajes extends React.Component {
                       <TableHead>
                         <TableRow>
                           <TableCell className={classes.titlePuntajes}>Nombre</TableCell>
-                          <Divider orientation="vertical" flexItem />
+                          {/* <Divider orientation="vertical" flexItem /> */}
                           <TableCell align="right" className={classes.titlePuntajes}>Puntos</TableCell>
                         </TableRow>
                       </TableHead>
@@ -211,7 +211,7 @@ class Puntajes extends React.Component {
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
                               {row.nombre}
                             </TableCell>
-                            <Divider orientation="vertical" flexItem />
+                            {/* <Divider orientation="vertical" flexItem /> */}
                             <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
                           </TableRow>
                         ))}

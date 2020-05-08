@@ -64,9 +64,11 @@ const useStyles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     maxWidth: '400px',
+    fontFamily: 'cursive',
   },
   nivel: {
     textAlign: 'left',
+    fontFamily: 'cursive',
   }
 });
 
@@ -126,6 +128,9 @@ class Tablas extends Component {
 
   
   avanzarNivel(e) {
+    //Scroll al top para mobile
+    window.scrollTo(0, 0);
+    
     //Calculo puntaje contra la api y seteo
     if(this.state.nivel === 1) {
       this.setState({puntos1 : 10 })
@@ -135,6 +140,13 @@ class Tablas extends Component {
     }
     if(this.state.nivel === 3) {
       this.setState({puntos3 : 8 })
+    }
+
+    //Si termino no vuelvo a buscar niveles
+    if (this.state.nivel === 3) {
+      console.log(this.state.resultados);
+      this.setState({open: true});
+      return;  
     }
 
     //Avanzo nivel - imprimo resultado para pruebas
@@ -259,7 +271,7 @@ class Tablas extends Component {
           {/* No tiene sentido retrocederNivel ? */}
           {/* {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>} */}
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
-          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true, puntos3: 8})} className={classes.boton}>Finalizar</Button>}
+          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Finalizar</Button>}
         </div>
 
 
