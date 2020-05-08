@@ -120,7 +120,7 @@ class NuevoUsuario extends Component {
             </Grid>
             <Grid item xs>
                 <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => {this.handleChange(event)}} />
-                <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
+                <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Guardar</Button>
             </Grid>
         </Grid>
         <Grid item xs={3} className={classes.contenedroImg}>
