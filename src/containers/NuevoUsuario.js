@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Api from '../controller/Api';
 import Modal from '@material-ui/core/Modal';
 import FooterImg from '../images/cat-looking.gif';
-import { Link } from 'react-router-dom';
+
 
 
 const useStyles = theme => ({
@@ -54,17 +54,15 @@ function getModalStyle() {
   };
 }
 
-class Home extends Component {
+class NuevoUsuario extends Component {
   
   constructor(props){
     super(props);
     this.state = {
       name: '',
       open: false,
-      setOpen: '',
+      open1: false,
     }
-    this.props.reset();
-    
   }
   isFormValid = () => {
     const {name} = this.state
@@ -83,14 +81,15 @@ class Home extends Component {
   resultadoUsuario (existe, error)
   {
     if(error != null) {
-      this.props.history.push('/Error')
-      return;
+      // Se comenta para pruebas contra el mock. Cuando vaya a la api usar esta logica de error.
+      // this.props.history.push('/Error')
+      // return;
+      this.setState({open1: true});
     }
     if (existe) {
-      this.props.onClick();
-      this.props.history.push('/Seleccion')
-    } else {
       this.setState({open: true});
+    } else {
+      this.setState({open1: true});
     }
   }
 
@@ -98,9 +97,11 @@ class Home extends Component {
     this.setState({open: false});
   };
 
-  componentDidMount() {
-    
-  }
+  handleCloseAndExit = () => {
+    this.setState({open: false});
+    this.props.history.push('/Home')
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -114,21 +115,18 @@ class Home extends Component {
           style={{ minHeight: '50vh' }}>
             <Grid item xs>
               <div>
-                <h1>Bienvenido a clases</h1>
+                <h1>Nuevo Usuario</h1>
               </div>
             </Grid>
             <Grid item xs>
-                <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => {this.props.changeName(event.target.value); this.handleChange(event)}} />
-                {/* <Button type="submit" variant="contained" component={Link} to={'/Seleccion'} onClick={this.props.onClick} disabled={!this.state.name}>Entrar</Button> */}
+                <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => {this.handleChange(event)}} />
                 <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
-            </Grid>
-            <Grid item xs>
-                <Button className={classes.botonSecundario} variant="contained" component={Link} to={'/NuevoUsuario'}>Nuevo Usuario</Button>
             </Grid>
         </Grid>
         <Grid item xs={3} className={classes.contenedroImg}>
            <img className={classes.imgFotter} src={FooterImg} alt="" />
         </Grid>
+        {/* Modal de nombre duplicado */}
         <Modal
         open={this.state.open}
         onClose={this.handleClose}
@@ -136,11 +134,27 @@ class Home extends Component {
         aria-describedby="simple-modal-description"
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <h2 id="simple-modal-title">Ups! El nombre no existe</h2>
+            <h2 id="simple-modal-title">Ups! El nombre ya esta usado</h2>
             <p id="simple-modal-description">
-              Hace click en Nuevo Usuario para empezar!
+              Elegí otro nombre diferente :)!!
             </p>
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
+          </div>
+        </Modal>
+        
+        {/* Modal usuario creado exitosamente */}
+        <Modal
+        open={this.state.open1}
+        onClose={this.handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+            <h2 id="simple-modal-title">El usuario está creado</h2>
+            <p id="simple-modal-description">
+              Ya podes empezar!!
+            </p>
+            <Button variant="contained" onClick={this.handleCloseAndExit.bind(this)}>Aceptar</Button>
           </div>
         </Modal>
       </div>
@@ -150,4 +164,4 @@ class Home extends Component {
 }
 
 
-export default withStyles(useStyles)(Home);;
+export default withStyles(useStyles)(NuevoUsuario);;

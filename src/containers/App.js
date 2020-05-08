@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import AppByM1 from '../components/Ejercicios/ByM/AppByM1';
 import AppByM2 from '../components/Ejercicios/ByM/AppByM2';
 import AppByM3 from '../components/Ejercicios/ByM/AppByM3';
+import NuevoUsuario from './NuevoUsuario'
 
 const Container = styled.div`
   ${'' /* max-width: 980px; */}
@@ -88,6 +89,11 @@ class App extends Component {
                       path="/"
                       exact
                       render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+                    />
+                    <Route
+                      path="/NuevoUsuario"
+                      exact
+                      component={NuevoUsuario}
                     />
                     <Route
                       path="/Seleccion"

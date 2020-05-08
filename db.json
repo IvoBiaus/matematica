@@ -1,12 +1,12 @@
 {
     "userFer": {
-        "existe": false
+        "existe": true
     },
     "userEstela": {
-        "existe": false
+        "existe": true
     },
     "userError": {
-        "existe": true
+        "existe": false
     },
     "puntajes": {
         "tablas": [
