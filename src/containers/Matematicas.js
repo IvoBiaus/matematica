@@ -29,7 +29,7 @@ class Matematicas extends Component {
       ejercicio = <Tablas history={this.props.history} name={this.props.name}></Tablas>;
     }
     if (this.props.location.state.ej === "Sumas") {
-      ejercicio = <Sumas></Sumas>;
+      ejercicio = <Sumas history={this.props.history} name={this.props.name}></Sumas>;
     }
     if (this.props.location.state.ej === "Billetes") {
       ejercicio = <Billetes history={this.props.history} name={this.props.name}></Billetes>;

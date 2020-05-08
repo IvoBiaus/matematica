@@ -1,7 +1,11 @@
 {
     "/user/Fer": "/userFer",
+    "/user/Estela": "/userEstela",
     "/user/error": "/userError",
     "/matematica/tablas/1": "/tablas1",
     "/matematica/tablas/2": "/tablas2",
-    "/matematica/tablas/3": "/tablas3"
+    "/matematica/tablas/3": "/tablas3",
+    "/matematica/sumas/1": "/sumas1",
+    "/matematica/sumas/2": "/sumas2",
+    "/matematica/sumas/3": "/sumas3"
 }
