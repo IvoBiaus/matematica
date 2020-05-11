@@ -9,6 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 /* Imagenes de Billetes  */
@@ -19,6 +20,7 @@ import cienpesos from './images/billetesymonedas/billetes/cienpesos.png';
 import doscientospesos from './images/billetesymonedas/billetes/cienpesos.png';
 import quinientospesos from './images/billetesymonedas/billetes/quinientospesos.png';
 import milpesos from './images/billetesymonedas/billetes/milpesos.png';
+import FooterImg from '../../../images/cat-walking.gif';
 /* Imagene Kiosco  */
 import kiosco from './images/billetesymonedas/m/kiosco.png';
 
@@ -27,46 +29,56 @@ export default function StickyFooter(props) {
 
   /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [ diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
+  const imageCollection = [diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
   const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
 
   return (
     <div className={classes.root}>
-
-      <Container component="main" className={classes.main} maxWidth="sm">
-        {/* Comienzo  */}
-        <Typography variant="h4" component="h4" gutterBottom>
-        Billetes y Monedas 
+      <Grid container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '50vh' }}>
+        <Grid item md={6} className={classes.contenedroImg}>
+          <img className={classes.imgFotter} src={FooterImg} alt="" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Container component="main" className={classes.main} maxWidth="sm">
+            {/* Comienzo  */}
+            <Typography variant="h4" component="h4" gutterBottom>
+              Billetes y Monedas
         </Typography>
-        <Typography variant="h6" component="h6" gutterBottom>
-        Si quiero comprar 5 golosinas distintas, ¿Me alcanza con éste dinero?
+            <Typography variant="h6" component="h6" gutterBottom>
+              Si quiero comprar 5 golosinas distintas, ¿Me alcanza con éste dinero?
         </Typography>
 
-        {/* Selec de la func Si o No  */}
-        <div>
-        <ErrorRadios/>
-        <p></p>
-        </div>
+            {/* Selec de la func Si o No  */}
+            <div>
+              <ErrorRadios />
+              <p></p>
+            </div>
 
-       </Container>
-        {/* Fotos random de billetes */}
-        <Container maxWidth="sm">
-        <div className="App">
-        <header className="App-header">
-        <img src={getRandomImage()}  alt="billete"/>
-        <h5>+</h5>
-        <img src={getRandomImage()}  alt="billete"/>
-        <p></p>
-        <img src={kiosco}  alt="kiosco"/>
-        <p></p>
-        </header>
-        </div>
-        
-        {/* Boton volver a niveles  */}
-        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
-        </Container>
-      
-      </div>
+          </Container>
+          {/* Fotos random de billetes */}
+          <Container maxWidth="sm">
+            <div className="App">
+              <header className="App-header">
+                <img src={getRandomImage()} alt="billete" />
+                <h5>+</h5>
+                <img src={getRandomImage()} alt="billete" />
+                <p></p>
+                <img src={kiosco} alt="kiosco" />
+                <p></p>
+              </header>
+            </div>
+
+            {/* Boton volver a niveles  */}
+            <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
+          </Container>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 
@@ -109,7 +121,7 @@ function ErrorRadios() {
         <Button type="submit" variant="outlined" color="primary" className={classes.button}>
           Enviar
         </Button>
-        </FormControl>
+      </FormControl>
     </form>
   );
 }
@@ -144,5 +156,16 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     textAlign: 'center',
     transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
+  },
+  imgFotter: {
+    width: '100%',
+  },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));

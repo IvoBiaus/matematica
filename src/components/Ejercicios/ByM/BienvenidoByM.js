@@ -30,7 +30,7 @@ class Bienvenido extends Component {
               <div>
                 <Grid container
                     spacing={0}
-                    direction="column"
+                    direction="row"
                     alignItems="center"
                     justify="center"
                     style={{ minHeight: '20vh' }}

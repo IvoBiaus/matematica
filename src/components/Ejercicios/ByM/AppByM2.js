@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 /* Imagenes de Billetes  */
@@ -18,59 +19,70 @@ import milpesos from './images/billetesymonedas/billetes/milpesos.png';
 import gol1 from './images/billetesymonedas/n/gol1.png';
 import gol2 from './images/billetesymonedas/n/gol2.png';
 import gol3 from './images/billetesymonedas/n/gol3.png';
+import FooterImg from '../../../images/cat-walking.gif';
 
 /* Funcion principal  */
 export default function StickyFooter(props) {
-  
+
   /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [ diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
+  const imageCollection = [diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
   const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
-  const imageCollectionN = [ gol1,gol2,gol3];
+  const imageCollectionN = [gol1, gol2, gol3];
   const getRandomImageN = () => imageCollectionN[Math.floor(Math.random() * imageCollectionN.length)];
 
   return (
     <div className={classes.root}>
+      <Grid container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '50vh' }}>
+        <Grid item md={6} className={classes.contenedroImg}>
+          <img className={classes.imgFotter} src={FooterImg} alt="" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Container component="main" className={classes.main} maxWidth="sm">
 
-        <Container component="main" className={classes.main} maxWidth="sm">
-
-        {/* Comienzo  */}
-        <Typography variant="h4" component="h4" gutterBottom>
-        Billetes y Monedas 
+            {/* Comienzo  */}
+            <Typography variant="h4" component="h4" gutterBottom>
+              Billetes y Monedas
         </Typography>
-        <Typography variant="h6" component="h6" gutterBottom>
-        {'Con ese billete, ¿Cuántas golosinas puedo comprar ?'}
-        </Typography>
-        
-        {/* Cantidad Cuadro de texto  */}
-        <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
+            <Typography variant="h6" component="h6" gutterBottom>
+              {'Con ese billete, ¿Cuántas golosinas puedo comprar ?'}
+            </Typography>
 
-        {/* Boton Enviar  */}
-        <div>
-        <p></p>
-        <Button variant="contained" size="small" color="primary" className={classes.margin}>
-        Enviar
+            {/* Cantidad Cuadro de texto  */}
+            <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
+
+            {/* Boton Enviar  */}
+            <div>
+              <p></p>
+              <Button variant="contained" size="small" color="primary" className={classes.margin}>
+                Enviar
         </Button>
-        </div>
+            </div>
 
-        </Container>
+          </Container>
 
-        {/* Fotos random del billete  */}
-        <Container maxWidth="sm">
-        <div className="App">
-        <header className="App-header">
-        <img src={getRandomImage()}  alt="billete"/>
-        <p></p>
-        <img src={getRandomImageN()} alt="golosina"/>
-        <p></p>
-        </header>
-        </div>
-       
-        {/* Boton volver a niveles  */}
-        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
-        </Container>
+          {/* Fotos random del billete  */}
+          <Container maxWidth="sm">
+            <div className="App">
+              <header className="App-header">
+                <img src={getRandomImage()} alt="billete" />
+                <p></p>
+                <img src={getRandomImageN()} alt="golosina" />
+                <p></p>
+              </header>
+            </div>
 
-      </div>
+            {/* Boton volver a niveles  */}
+            <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
+          </Container>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 
@@ -104,5 +116,16 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     textAlign: 'center',
     transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
+  },
+  imgFotter: {
+    width: '100%',
+  },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));

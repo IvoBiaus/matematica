@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 /*Imagenes de Monedas  */
@@ -18,58 +19,71 @@ import cienpesos from './images/billetesymonedas/billetes/cienpesos.png';
 import doscientospesos from './images/billetesymonedas/billetes/cienpesos.png';
 import quinientospesos from './images/billetesymonedas/billetes/quinientospesos.png';
 import milpesos from './images/billetesymonedas/billetes/milpesos.png';
+import FooterImg from '../../../images/cat-walking.gif';
+
 
 /* Funcion principal  */
 export default function StickyFooter(props) {
 
-   /* Constantes  */
+  /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [ diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
+  const imageCollection = [diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
   const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
-  const imageCollectionMonedas = [ unpeso,dospesos,cincopesos];
+  const imageCollectionMonedas = [unpeso, dospesos, cincopesos];
   const getRandomImageMonedas = () => imageCollectionMonedas[Math.floor(Math.random() * imageCollectionMonedas.length)];
 
   return (
     <div className={classes.root}>
-      <Container component="main" className={classes.main} maxWidth="sm">
+      <Grid container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '50vh' }}>
+        <Grid item md={6} className={classes.contenedroImg}>
+          <img className={classes.imgFotter} src={FooterImg} alt="" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Container component="main" className={classes.main} maxWidth="sm">
 
-        {/* Comienzo  */}
-        <Typography variant="h4" component="h4" gutterBottom>
-        Billetes y Monedas
+            {/* Comienzo  */}
+            <Typography variant="h4" component="h4" gutterBottom>
+              Billetes y Monedas
         </Typography>
-        <Typography variant="h6" component="h6" gutterBottom>
-        ¿Cuánto dinero tengo ?
+            <Typography variant="h6" component="h6" gutterBottom>
+              ¿Cuánto dinero tengo ?
         </Typography>
 
-        {/* Cantidad Cuadro de texto  */}
-        <TextField id="outlined-basic" label="$" variant="outlined" />
+            {/* Cantidad Cuadro de texto  */}
+            <TextField id="outlined-basic" label="$" variant="outlined" />
 
-        {/* Boton Enviar  */}
-        <div>
-        <p></p>
-        <Button variant="contained" size="small" color="primary" className={classes.margin} >
-        Enviar
+            {/* Boton Enviar  */}
+            <div>
+              <p></p>
+              <Button variant="contained" size="small" color="primary" className={classes.margin} >
+                Enviar
         </Button>
-        </div>
+            </div>
 
-        </Container>
+          </Container>
 
-        {/* Fotos random de billetes y monedas  */}
-        <Container maxWidth="sm">
-        <div className="App">
-        <header className="App-header">
-        <img src={getRandomImage()}  alt="billete"/>
-        <h5>+</h5>
-        <img src={getRandomImage()}  alt="billete"/>
-        <h5>+</h5>
-        <img src={getRandomImageMonedas()} className="App-logo" alt="logo" />
-        </header>
-        </div>
+          {/* Fotos random de billetes y monedas  */}
+          <Container maxWidth="sm">
+            <div className="App">
+              <header className="App-header">
+                <img src={getRandomImage()} alt="billete" />
+                <h5>+</h5>
+                <img src={getRandomImage()} alt="billete" />
+                <h5>+</h5>
+                <img src={getRandomImageMonedas()} className="App-logo" alt="logo" />
+              </header>
+            </div>
 
-        {/* Boton volver a niveles  */}
-        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
-        </Container>
-    
+            {/* Boton volver a niveles  */}
+            <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
+          </Container>
+        </Grid>
+      </Grid>
     </div>
   );
 }
@@ -104,5 +118,16 @@ const useStyles = makeStyles((theme) => ({
     border: '0',
     textAlign: 'center',
     transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
+  },
+  imgFotter: {
+    width: '100%',
+  },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
