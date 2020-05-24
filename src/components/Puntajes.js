@@ -80,16 +80,27 @@ class Puntajes extends React.Component {
   }
 
   componentDidMount() {
-    Api.getPuntajes(this.resultPuntajes.bind(this));
+    Api.getPuntajes("Tablas", this.resultPuntajes.bind(this));
+    Api.getPuntajes("Sumas", this.resultPuntajes.bind(this));
+    Api.getPuntajes("Billetes", this.resultPuntajes.bind(this));
   }
-  resultPuntajes(puntajes, error) {
+  resultPuntajes(puntajes, juego, error) {
+    //Manejo de errores
     if (error != null) {
       this.props.history.push('/Error')
       return;
     }
-    this.setState({ puntajesTablas: puntajes.tablas.sort((a, b) => a.puntos - b.puntos) })
-    this.setState({ puntajesSumas: puntajes.sumas })
-    this.setState({ puntajesBilletes: puntajes.billetes })
+
+    if (juego === "Tablas") {
+      // this.setState({ puntajesTablas: puntajes.tablas.sort((a, b) => a.puntos - b.puntos) })
+      this.setState({ puntajesTablas: puntajes.sort((a, b) => a.score - b.score) })
+    }
+    if (juego === "Sumas") {
+      this.setState({ puntajesSumas: puntajes.sort((a, b) => a.score - b.score) })
+    }
+    if (juego === "Billetes") {
+      this.setState({ puntajesBilletes: puntajes.sort((a, b) => a.score - b.score) })
+    }
   }
 
   render() {
@@ -129,12 +140,12 @@ class Puntajes extends React.Component {
                       </TableHead>
                       <TableBody>
                         {this.state.puntajesTablas.map((row) => (
-                          <TableRow key={row.nombre}>
+                          <TableRow key={row.name}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
-                              {row.nombre}
+                              {row.name}
                             </TableCell>
                             {/* <Divider orientation="vertical" flexItem /> */}
-                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.score}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -168,12 +179,12 @@ class Puntajes extends React.Component {
                       </TableHead>
                       <TableBody>
                         {this.state.puntajesSumas.map((row) => (
-                          <TableRow key={row.nombre}>
+                          <TableRow key={row.name}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
-                              {row.nombre}
+                              {row.name}
                             </TableCell>
                             {/* <Divider orientation="vertical" flexItem /> */}
-                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.score}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -207,12 +218,12 @@ class Puntajes extends React.Component {
                       </TableHead>
                       <TableBody>
                         {this.state.puntajesBilletes.map((row) => (
-                          <TableRow key={row.nombre}>
+                          <TableRow key={row.name}>
                             <TableCell className={classes.detallePuntajes} component="th" scope="row">
-                              {row.nombre}
+                              {row.name}
                             </TableCell>
                             {/* <Divider orientation="vertical" flexItem /> */}
-                            <TableCell align="right" className={classes.detallePuntajes}>{row.puntos}</TableCell>
+                            <TableCell align="right" className={classes.detallePuntajes}>{row.score}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>

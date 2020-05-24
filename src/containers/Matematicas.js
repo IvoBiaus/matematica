@@ -34,13 +34,13 @@ class Matematicas extends Component {
     const { classes } = this.props;
     let ejercicio;
     if (this.props.location.state.ej === "Tablas") {
-      ejercicio = <Tablas history={this.props.history} name={this.props.name}></Tablas>;
+      ejercicio = <Tablas history={this.props.history} name={this.props.name} token={this.props.token}></Tablas>;
     }
     if (this.props.location.state.ej === "Sumas") {
-      ejercicio = <Sumas history={this.props.history} name={this.props.name}></Sumas>;
+      ejercicio = <Sumas history={this.props.history} name={this.props.name} token={this.props.token}></Sumas>;
     }
     if (this.props.location.state.ej === "Billetes") {
-      ejercicio = <Billetes history={this.props.history} name={this.props.name}></Billetes>;
+      ejercicio = <Billetes history={this.props.history} name={this.props.name} token={this.props.token}></Billetes>;
     }
     return (
       <Grid container

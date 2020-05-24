@@ -1,34 +1,43 @@
 class Api {
 
-    exsiteUsuario(nombreUsuario, resultadoUsuario) {
+    exsiteUsuario(nombreUsuario, password, resultadoUsuario) {
 
-        const url = 'http://localhost:3001/';
-        const method= "user/";
+        const url = 'http://localhost:4000/';
+        const method= "api/users/login/";
 
-        const endpoint = `${url}${method}${nombreUsuario}`;
-            fetch(endpoint
-            ).then ((response) => {
-                if (response.status === 200) {
+        const endpoint = `${url}${method}`;
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json'},
+            body: JSON.stringify({ name: nombreUsuario, password: password })
+        };
+            fetch(endpoint, requestOptions)
+            .then ((response) => {
+                if (response.status === 201) {
                     return response.json();
                 }
                 throw new Error(response.status);    
             }).then (responseData => {
                 // console.log("respuesta bruta",responseData);
                 //Obtengo resultados
-                const results = responseData.existe;
+                const results = responseData.token;
                 resultadoUsuario(results, null);
             }).catch(error => {
                 resultadoUsuario(null, error);
             });
     }
 
-    getPuntajes(resultPuntajes) {
-        const url = 'http://localhost:3001/';
-        const method= "puntajes"
+    getPuntajes(juego, resultPuntajes) {
+        const url = 'http://localhost:4000/';
+        const method= "api/scores/" + juego;
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json'}
+        };
 
         const endpoint = `${url}${method}`;
-            fetch(endpoint
-            ).then ((response) => {
+            fetch(endpoint, requestOptions)
+            .then ((response) => {
                 if (response.status === 200) {
                     return response.json();
                 }
@@ -36,11 +45,11 @@ class Api {
             }).then (responseData => {
                 // console.log("respuesta bruta",responseData);
                 //Obtengo resultados
-                const results = responseData;
-                
-                resultPuntajes(results, null);
+                const results = responseData.data;
+                console.log(results);
+                resultPuntajes(results, juego, null);
             }).catch(error => {
-                resultPuntajes(null, error);
+                resultPuntajes(null, null, error);
             });
     }
 

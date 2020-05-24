@@ -53,6 +53,7 @@ class App extends Component {
   state = {
     mostrar: 'Bienvenido',
     name: '',
+    token: '',
     show: false
   };
 
@@ -65,6 +66,10 @@ class App extends Component {
 
   changeName = (newName) => {
     this.setState({ name: newName })
+  }
+
+  changeToken= (newToken) => {
+    this.setState({ token: newToken});
   }
 
   handleClick = () => {
@@ -88,7 +93,7 @@ class App extends Component {
                     <Route
                       path="/"
                       exact
-                      render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+                      render={(props) => <Home {...props} onClick={this.handleClick} changeToken={this.changeToken} changeName={this.changeName} reset={this.resetName} />}
                     />
                     <Route
                       path="/NuevoUsuario"
@@ -108,7 +113,7 @@ class App extends Component {
                     <Route
                       path="/matematicas"
                       exact
-                      render={(props) => <Matematicas {...props} name={this.state.name} />}
+                      render={(props) => <Matematicas {...props} name={this.state.name} token={this.state.token} />}
                     />
                     <Route
                       path="/AppByM1"

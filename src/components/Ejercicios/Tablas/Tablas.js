@@ -174,6 +174,7 @@ class Tablas extends Component {
     return (
       <div className='column'>
         <h1>Hola {this.props.name} - Estas en el Nivel {this.state.nivel}</h1>
+        <h1>{this.props.token}</h1>
         <h2 className='titleLeft'>Practiquemos las Tablas</h2>
         {this.state.nivel > 0 && 
           <div  className={classes.puntajeParcial}>
