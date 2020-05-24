@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { withStyles  } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Api from '../controller/Api';
 import Modal from '@material-ui/core/Modal';
@@ -12,24 +12,24 @@ import FooterImg from '../images/cat-looking.gif';
 const useStyles = theme => ({
   paper: {
     position: 'absolute',
-    
+
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
   botonSecundario: {
-      backgroundColor: '#000000',
-      color: '#FFFFFF',
-      borderRadius: '200px',
-      display: 'inline-block',
-      fontSize: '15px',
-      height: '40px',
-      width: '200px',
-      border: '0',
-      textAlign: 'center',
-      transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
-  },  
+    backgroundColor: '#000000',
+    color: '#FFFFFF',
+    borderRadius: '200px',
+    display: 'inline-block',
+    fontSize: '15px',
+    height: '40px',
+    width: '200px',
+    border: '0',
+    textAlign: 'center',
+    transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
+  },
   imgFotter: {
     width: '100%',
   },
@@ -55,50 +55,55 @@ function getModalStyle() {
 }
 
 class NuevoUsuario extends Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.state = {
       name: '',
+      password: '',
       open: false,
       open1: false,
     }
   }
   isFormValid = () => {
-    const {name} = this.state
+    const { name } = this.state
     return name
   }
 
-  handleChange(e) {
-    this.setState({name: e.target.value})
+  handleChangeName(e) {
+    this.setState({ name: e.target.value })
+  }
+
+  handleChangePass(e) {
+    this.setState({ password: e.target.value })
   }
 
   handleClick(e) {
     // this.saySomething("element clicked");
-    Api.exsiteUsuario(this.state.name, this.resultadoUsuario.bind(this));
+    Api.registro(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
   }
 
-  resultadoUsuario (existe, error)
-  {
-    if(error != null) {
-      // Se comenta para pruebas contra el mock. Cuando vaya a la api usar esta logica de error.
-      // this.props.history.push('/Error')
-      // return;
-      this.setState({open1: true});
+  resultadoUsuario(existe, error) {
+
+    //Manejo de errores
+    if (error != null) {
+      if (error.message === '400') {
+        this.setState({ open: true });
+        return;
+      } else {
+        this.props.history.push('/Error')
+        return;
+      }
     }
-    if (existe) {
-      this.setState({open: true});
-    } else {
-      this.setState({open1: true});
-    }
+    this.setState({ open1: true });
   }
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   handleCloseAndExit = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
     this.props.history.push('/Home')
   };
 
@@ -107,31 +112,36 @@ class NuevoUsuario extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Grid  container
+        <Grid container
           spacing={0}
           direction="column"
           alignItems="center"
           justify="center"
           style={{ minHeight: '50vh' }}>
-            <Grid item xs>
-              <div>
-                <h1>Nuevo Usuario</h1>
-              </div>
-            </Grid>
-            <Grid item xs>
-                <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => {this.handleChange(event)}} />
-                <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Guardar</Button>
-            </Grid>
+          <Grid item xs>
+            <div>
+              <h1>Nuevo Usuario</h1>
+            </div>
+          </Grid>
+          <Grid item xs>
+            <TextField id="standard-basic" label="Ingresá tu nombre" onChange={(event) => { this.handleChangeName(event) }} />
+          </Grid>
+          <Grid item xs>
+            <TextField id="standard-basic" label="Crea una clave" onChange={(event) => { this.handleChangePass(event) }} />
+          </Grid>
+          <Grid item xs>
+            <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Guardar</Button>
+          </Grid>
         </Grid>
         <Grid item xs={3} className={classes.contenedroImg}>
-           <img className={classes.imgFotter} src={FooterImg} alt="" />
+          <img className={classes.imgFotter} src={FooterImg} alt="" />
         </Grid>
         {/* Modal de nombre duplicado */}
         <Modal
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
         >
           <div style={getModalStyle()} className={classes.paper}>
             <h2 id="simple-modal-title">Ups! El nombre ya esta usado</h2>
@@ -141,13 +151,13 @@ class NuevoUsuario extends Component {
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
           </div>
         </Modal>
-        
+
         {/* Modal usuario creado exitosamente */}
         <Modal
-        open={this.state.open1}
-        onClose={this.handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+          open={this.state.open1}
+          onClose={this.handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
         >
           <div style={getModalStyle()} className={classes.paper}>
             <h2 id="simple-modal-title">El usuario está creado</h2>
@@ -158,9 +168,9 @@ class NuevoUsuario extends Component {
           </div>
         </Modal>
       </div>
-      );
+    );
   }
-  
+
 }
 
 

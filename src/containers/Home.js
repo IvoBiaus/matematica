@@ -82,7 +82,7 @@ class Home extends Component {
 
   handleClick(e) {
     // this.saySomething("element clicked");
-    Api.exsiteUsuario(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
+    Api.login(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
   }
 
   resultadoUsuario(token, error) {

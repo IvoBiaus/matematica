@@ -1,9 +1,36 @@
 class Api {
 
-    exsiteUsuario(nombreUsuario, password, resultadoUsuario) {
+    login(nombreUsuario, password, resultadoUsuario) {
 
         const url = 'http://localhost:4000/';
         const method= "api/users/login/";
+
+        const endpoint = `${url}${method}`;
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json'},
+            body: JSON.stringify({ name: nombreUsuario, password: password })
+        };
+            fetch(endpoint, requestOptions)
+            .then ((response) => {
+                if (response.status === 201) {
+                    return response.json();
+                }
+                throw new Error(response.status);    
+            }).then (responseData => {
+                // console.log("respuesta bruta",responseData);
+                //Obtengo resultados
+                const results = responseData.token;
+                resultadoUsuario(results, null);
+            }).catch(error => {
+                resultadoUsuario(null, error);
+            });
+    }
+
+    registro(nombreUsuario, password, resultadoUsuario) {
+
+        const url = 'http://localhost:4000/';
+        const method= "api/users/registration/";
 
         const endpoint = `${url}${method}`;
         const requestOptions = {
