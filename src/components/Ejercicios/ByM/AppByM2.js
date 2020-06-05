@@ -26,10 +26,34 @@ export default function StickyFooter(props) {
 
   /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
-  const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
-  const imageCollectionN = [gol1, gol2, gol3];
+  const imageCollection = [ 
+    { bille: diezpesos,
+      valor:10},
+    { bille: veintepesos,
+      valor:20},
+    { bille: cincuentapesos,
+      valor:50}, 
+    { bille: cienpesos,
+      valor:100},
+    { bille: doscientospesos,
+      valor: 200},
+    { bille: quinientospesos,
+      valor:500},
+    { bille: milpesos,
+      valor: 1000}];    
+    const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
+
+  const imageCollectionN = [
+    { golosina: gol1,
+      valor:25},
+     { golosina: gol2,
+      valor: 52},
+     {golosina: gol3,
+    valor: 16}];
+
   const getRandomImageN = () => imageCollectionN[Math.floor(Math.random() * imageCollectionN.length)];
+
+  var bille1=0,golo=0;
 
   return (
     <div className={classes.root}>
@@ -54,12 +78,12 @@ export default function StickyFooter(props) {
             </Typography>
 
             {/* Cantidad Cuadro de texto  */}
-            <TextField id="outlined-basic" label="Cantidad" variant="outlined" />
+            <TextField id="outlined-basic" label="$" variant="outlined" onChange = {props.onChange} value = {props.valorUsuario}  />
 
             {/* Boton Enviar  */}
             <div>
               <p></p>
-              <Button variant="contained" size="small" color="primary" className={classes.margin}>
+              <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={resultadoN2} >
                 Enviar
         </Button>
             </div>
@@ -69,10 +93,9 @@ export default function StickyFooter(props) {
           {/* Fotos random del billete  */}
           <Container maxWidth="sm">
             <div className="App">
-              <header className="App-header">
-                <img src={getRandomImage()} alt="billete" />
+              <header className="App-header"><img src={getRandomImage().bille} bille1={getRandomImage().valor}  alt="billete" />
                 <p></p>
-                <img src={getRandomImageN()} alt="golosina" />
+                <img src={getRandomImageN().golosina} golo={getRandomImageN().valor}  alt="golosina" />
                 <p></p>
               </header>
             </div>
@@ -85,6 +108,14 @@ export default function StickyFooter(props) {
     </div>
   );
 }
+
+
+
+function resultadoN2 (bille1, gol, valorUsuario){
+  const alBack = [{ bille: bille1, golo: gol, valor: valorUsuario}];
+return alBack;
+}
+
 
 // Estilos
 const useStyles = makeStyles((theme) => ({

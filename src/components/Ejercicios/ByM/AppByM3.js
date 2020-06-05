@@ -29,8 +29,23 @@ export default function StickyFooter(props) {
 
   /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [diezpesos, veintepesos, cincuentapesos, cienpesos, doscientospesos, quinientospesos, milpesos];
-  const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
+  const imageCollection = [ 
+    { bille: diezpesos,
+      valor:10},
+    { bille: veintepesos,
+      valor:20},
+    { bille: cincuentapesos,
+      valor:50}, 
+    { bille: cienpesos,
+      valor:100},
+    { bille: doscientospesos,
+      valor: 200},
+    { bille: quinientospesos,
+      valor:500},
+    { bille: milpesos,
+      valor: 1000}];    
+    const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
+    var bille1=0,bille2=0,kios=230;
 
   return (
     <div className={classes.root}>
@@ -64,12 +79,12 @@ export default function StickyFooter(props) {
           <Container maxWidth="sm">
             <div className="App">
               <header className="App-header">
-                <img src={getRandomImage()} alt="billete" />
-                <h5>+</h5>
-                <img src={getRandomImage()} alt="billete" />
-                <p></p>
-                <img src={kiosco} alt="kiosco" />
-                <p></p>
+              <img src={getRandomImage().bille} bille1={getRandomImage().valor}  alt="billete" />
+              <h5>+</h5>
+              <img src={getRandomImage().bille} bille2={getRandomImage().valor} alt="billete"/>
+              <p></p>
+              <img src={kiosco} alt="kiosco" />
+              <p></p>
               </header>
             </div>
 
@@ -80,6 +95,13 @@ export default function StickyFooter(props) {
       </Grid>
     </div>
   );
+}
+
+
+function resultado (bille1, bille2, kios, valorUsuario){
+  let total = bille1+ bille2;
+  const alBack = [{ cuentadeBilletesYMonedas: total, valor: valorUsuario}];
+return alBack;
 }
 
 // Func para selec Si o No 
@@ -99,10 +121,8 @@ function ErrorRadios() {
     event.preventDefault();
 
     if (value === 'best') {
-      setHelperText('Respuesta correcta!');
       setError(false);
     } else if (value === 'worst') {
-      setHelperText('Respuesta equivocada !');
       setError(true);
     } else {
       setHelperText('¿Cual es la respuesta?');
@@ -118,12 +138,19 @@ function ErrorRadios() {
           <FormControlLabel value="worst" control={<Radio />} label="No" />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button type="submit" variant="outlined" color="primary" className={classes.button}>
+        <Button type="submit" variant="outlined" color="primary" className={classes.button} onChange={handleRadioChange}>
           Enviar
         </Button>
       </FormControl>
     </form>
   );
+}
+
+
+function resultadoN3 (bille1, bille2, kiosco, valorUsuario){
+  let total = bille1+ bille2;
+  const alBack = [{ cuentadeBilletesYMonedas: total, valork: kiosco, valor: valorUsuario}];
+return alBack;
 }
 
 // Estilos  
