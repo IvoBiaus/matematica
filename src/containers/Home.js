@@ -99,7 +99,7 @@ class Home extends Component {
     
     //Guardo token
     if (token) {
-      this.props.changeToken(token);
+      // this.props.changeToken(token);
       this.props.onClick();
       this.props.history.push('/Seleccion')
     } 

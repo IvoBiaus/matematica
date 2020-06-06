@@ -103,6 +103,7 @@ class Tablas extends Component {
 
   handleClose = () => {
     this.setState({open: false});
+    this.props.history.push('/Seleccion');
   };
 
   componentDidMount() 
@@ -127,33 +128,36 @@ class Tablas extends Component {
   }
 
   
-  avanzarNivel(e) {
+  async avanzarNivel(e) {
     //Scroll al top para mobile
     window.scrollTo(0, 0);
     
     //Calculo puntaje contra la api y seteo
     if(this.state.nivel === 1) {
-      this.setState({puntos1 : 10 })
+      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos1 : puntaje });
     }
     if(this.state.nivel === 2) {
-      this.setState({puntos2 : 9 })
+      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos2 : puntaje })
     }
     if(this.state.nivel === 3) {
-      this.setState({puntos3 : 8 })
+      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos3 : puntaje })
     }
 
     //Si termino no vuelvo a buscar niveles
     if (this.state.nivel === 3) {
-      console.log(this.state.resultados);
+      Api.guardarPuntaje(this.props.name, this.state.puntos1+this.state.puntos2+this.state.puntos3)
       this.setState({open: true});
       return;  
     }
 
     //Avanzo nivel - imprimo resultado para pruebas
     this.setState({nivel: this.state.nivel + 1});
-    console.log(this.state.resultados);
+    // console.log(this.state.resultados);
     this.setState({resultados: []});
-    Api.obtenerNivelTablas(this.state.nivel + 1, this.resultTablas.bind(this));
+    Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
   }
 
   // retrocederNivel(e) {
@@ -165,7 +169,10 @@ class Tablas extends Component {
   guardarResultado(operacion, e) {
     let val = e.target.value;
     const array = this.state.resultados;
-    array[e.target.id - 1] = ([operacion, val]);
+    // array[e.target.id - 1] = ([operacion, val]);
+
+    array.push({"op": operacion , "resultado": val})
+
     this.setState({resultados: array});
   }
 
@@ -198,9 +205,9 @@ class Tablas extends Component {
           </div>}
 
         {this.state.nivel === 1 && <form className={classes.root}>
-          {this.state.data1.map((row) => (        
+          {this.state.data1.map((row) => (
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -214,16 +221,16 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
         {this.state.nivel === 2 && <form className={classes.root}>
           {this.state.data2.map((row) => (        
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -237,16 +244,16 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
         {this.state.nivel === 3 && <form className={classes.root}>
           {this.state.data3.map((row) => (        
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -260,9 +267,9 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
@@ -287,7 +294,7 @@ class Tablas extends Component {
           <div style={getModalStyle()} className={classes.paper}>
             <h2 id="simple-modal-title">Terminaste los ejercicios</h2>
             <p id="simple-modal-description">
-              Tu puntaje es 27
+              Tu puntaje es {this.state.puntos1 + this.state.puntos2 + this.state.puntos3}
             </p>
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
           </div>

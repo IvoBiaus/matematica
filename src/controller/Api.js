@@ -13,12 +13,15 @@ class Api {
         };
             fetch(endpoint, requestOptions)
             .then ((response) => {
-                if (response.status === 201) {
+                if (response.status === 201) {                   
                     return response.json();
                 }
                 throw new Error(response.status);    
             }).then (responseData => {
                 // console.log("respuesta bruta",responseData);
+                //Guardo Token y nombre
+                localStorage.setItem("nombre", nombreUsuario);
+                localStorage.setItem("token", responseData.token);
                 //Obtengo resultados
                 const results = responseData.token;
                 resultadoUsuario(results, null);
@@ -73,7 +76,6 @@ class Api {
                 // console.log("respuesta bruta",responseData);
                 //Obtengo resultados
                 const results = responseData.data;
-                console.log(results);
                 resultPuntajes(results, juego, null);
             }).catch(error => {
                 resultPuntajes(null, null, error);
@@ -81,21 +83,29 @@ class Api {
     }
 
     obtenerNivelTablas(nivel, resultTablas) {
-        const url = 'http://localhost:3001/';
-        const method= "matematica/tablas/"
+        const url = 'http://localhost:4000/';
+        const method= "api/math/Tablas/";
+
+
+        const options = { 
+            method: 'GET', 
+            headers: new Headers({
+              'x-access-token':  localStorage.getItem("token")
+            })
+        };
 
         const endpoint = `${url}${method}${nivel}`;
-            fetch(endpoint
+            fetch(endpoint, options
             ).then ((response) => {
                 if (response.status === 200) {
                     return response.json();
-                }
+                } 
+                
                 throw new Error(response.status);    
             }).then (responseData => {
                 // console.log("respuesta bruta",responseData);
                 //Obtengo resultados
-                const results = responseData;
-                
+                const results = responseData.data;
                 resultTablas(results, nivel, null);
             }).catch(error => {
                 resultTablas(null, nivel, error);
@@ -121,6 +131,75 @@ class Api {
                 resultSumas(results, nivel, null);
             }).catch(error => {
                 resultSumas(null, nivel, error);
+            });
+    }
+
+    async verificarTablas(nivel, resultados) {
+        const url = 'http://localhost:4000/';
+        const method= "api/math/verificarTablas/";
+
+
+        const options = { 
+            method: 'POST', 
+            headers: new Headers({
+              'x-access-token':  localStorage.getItem("token"),
+              'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(resultados)
+        };
+
+        const endpoint = `${url}${method}${nivel}`;
+        let puntaje = await fetch(endpoint, options
+            ).then ((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                } 
+                
+                throw new Error(response.status);    
+            }).then (responseData => {
+                // console.log("respuesta bruta",responseData);
+                //Obtengo resultados
+                const results = responseData.data;
+                
+                return results;
+            }).catch(error => {
+                console.log("Error en verificacion de ejercicio");
+            });
+        return puntaje;
+    }
+
+    guardarPuntaje(nombre, puntaje) {
+        const url = 'http://localhost:4000/';
+        const method= "api/scores/score/"
+
+        var request = {
+            'name': nombre,
+            'game': 'Tablas',
+            'score': puntaje
+        }
+
+        const options = { 
+            method: 'POST', 
+            headers: new Headers({
+              'x-access-token':  localStorage.getItem("token"),
+              'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(request)
+        };
+
+        const endpoint = `${url}${method}`;
+            fetch(endpoint, options
+            ).then ((response) => {
+                if (response.status === 201) {
+                    return response.json();
+                }
+                throw new Error(response.status);    
+            }).then (responseData => {
+                // console.log("respuesta bruta",responseData);
+                //Obtengo resultados                
+
+            }).catch(error => {
+                console.log("Error en guardar puntajes");
             });
     }
 
