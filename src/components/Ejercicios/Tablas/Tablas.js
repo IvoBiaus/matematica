@@ -131,18 +131,18 @@ class Tablas extends Component {
   async avanzarNivel(e) {
     //Scroll al top para mobile
     window.scrollTo(0, 0);
-    
+    var puntaje;
     //Calculo puntaje contra la api y seteo
     if(this.state.nivel === 1) {
-      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
       this.setState({puntos1 : puntaje });
     }
     if(this.state.nivel === 2) {
-      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
       this.setState({puntos2 : puntaje })
     }
     if(this.state.nivel === 3) {
-      var puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
       this.setState({puntos3 : puntaje })
     }
 

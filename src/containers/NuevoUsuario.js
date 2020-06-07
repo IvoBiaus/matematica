@@ -107,6 +107,10 @@ class NuevoUsuario extends Component {
     this.props.history.push('/Home')
   };
 
+  volver = () => {
+    this.props.history.push('/Home')
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -127,10 +131,13 @@ class NuevoUsuario extends Component {
             <TextField id="standard-basic" label="Ingresá tu nombre" onChange={(event) => { this.handleChangeName(event) }} />
           </Grid>
           <Grid item xs>
-            <TextField id="standard-basic" label="Crea una clave" onChange={(event) => { this.handleChangePass(event) }} />
+            <TextField id="standard-basic" type="password" label="Crea una clave" onChange={(event) => { this.handleChangePass(event) }} />
           </Grid>
           <Grid item xs>
             <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Guardar</Button>
+          </Grid>
+          <Grid item xs>
+            <Button className={classes.botonSecundario} variant="contained" onClick={this.volver.bind(this)}>Volver</Button>
           </Grid>
         </Grid>
         <Grid item xs={3} className={classes.contenedroImg}>

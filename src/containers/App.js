@@ -51,49 +51,34 @@ const useStyles = theme => ({
 class App extends Component {
 
   state = {
-    mostrar: 'Bienvenido',
-    name: '',
-    token: '',
-    show: false
+    name: localStorage.getItem("nombre"),
+    show: localStorage.getItem("token") ? true : false,
   };
 
-  resetName = () => {
-    this.setState({
-      mostrar: 'Bienvenido',
-      show: false,
-    })
+  showOptions = () => {
+    this.setState({ show: true });
   }
 
-  changeName = (newName) => {
-    this.setState({ name: newName })
+  hideOptions = () => {
+    this.setState({ show: false });
   }
 
-  changeToken= (newToken) => {
-    this.setState({ token: newToken});
-  }
-
-  handleClick = () => {
-    this.setState({
-      mostrar: this.state.mostrar + ' ' + this.state.name,
-      show: true,
-    })
-  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Hero name={this.state.mostrar} />
+        <Hero />
         <BrowserRouter>
           <div>
             <Container>
-              <Barra login={this.state.show} />
+              <Barra show={this.state.show} hideOptions={this.hideOptions}/>
               <Grid>
                 <Grid item xs={12}>
                   <Switch>
                     <Route
                       path="/"
                       exact
-                      render={(props) => <Home {...props} onClick={this.handleClick} changeToken={this.changeToken} changeName={this.changeName} reset={this.resetName} />}
+                      render={(props) => <Home {...props} showOptions={this.showOptions}/>}
                     />
                     <Route
                       path="/NuevoUsuario"
@@ -113,7 +98,7 @@ class App extends Component {
                     <Route
                       path="/matematicas"
                       exact
-                      render={(props) => <Matematicas {...props} name={this.state.name} token={this.state.token} />}
+                      render={(props) => <Matematicas {...props} name={this.state.name} />}
                     />
                     <Route
                       path="/AppByM1"

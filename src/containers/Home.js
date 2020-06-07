@@ -64,7 +64,6 @@ class Home extends Component {
       open: false,
       setOpen: '',
     }
-    this.props.reset();
 
   }
   isFormValid = () => {
@@ -81,7 +80,7 @@ class Home extends Component {
   }
 
   handleClick(e) {
-    // this.saySomething("element clicked");
+    
     Api.login(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
   }
 
@@ -99,8 +98,7 @@ class Home extends Component {
     
     //Guardo token
     if (token) {
-      // this.props.changeToken(token);
-      this.props.onClick();
+      this.props.showOptions();
       this.props.history.push('/Seleccion')
     } 
   }
@@ -129,7 +127,7 @@ class Home extends Component {
             </div>
           </Grid>
           <Grid item xs>
-            <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => { this.props.changeName(event.target.value); this.handleChangeName(event) }} />
+            <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => { this.handleChangeName(event) }} />
           </Grid>
           <Grid item xs>
             <TextField id="standard-basic" type="password" label="Ingresá tu clave" onChange={(event) => { this.handleChangePass(event) }} />

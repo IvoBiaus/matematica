@@ -93,13 +93,13 @@ class Puntajes extends React.Component {
 
     if (juego === "Tablas") {
       // this.setState({ puntajesTablas: puntajes.tablas.sort((a, b) => a.puntos - b.puntos) })
-      this.setState({ puntajesTablas: puntajes.sort((a, b) => a.score - b.score) })
+      this.setState({ puntajesTablas: puntajes.sort((a, b) => b.score - a.score) })
     }
     if (juego === "Sumas") {
-      this.setState({ puntajesSumas: puntajes.sort((a, b) => a.score - b.score) })
+      this.setState({ puntajesSumas: puntajes.sort((a, b) => b.score - a.score) })
     }
     if (juego === "Billetes") {
-      this.setState({ puntajesBilletes: puntajes.sort((a, b) => a.score - b.score) })
+      this.setState({ puntajesBilletes: puntajes.sort((a, b) => b.score - a.score) })
     }
   }
 
