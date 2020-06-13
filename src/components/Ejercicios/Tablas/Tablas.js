@@ -108,7 +108,19 @@ class Tablas extends Component {
 
   componentDidMount() 
   {
-    Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
+    if (localStorage.getItem(localStorage.getItem("nombre"))) {
+      var obj = localStorage.getItem(localStorage.getItem("nombre"));
+      var json = JSON.parse(obj);
+      
+      this.setState({nivel: json.nivel + 1});
+      this.setState({puntos1: json.puntos1});
+      this.setState({puntos2: json.puntos2});
+      this.setState({puntos3: json.puntos3});
+
+      Api.obtenerNivelTablas(json.nivel + 1, this.resultTablas.bind(this));
+    } else {
+      Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
+    }
   }
   resultTablas (ejercicios, nivel, error)
   {
@@ -146,9 +158,19 @@ class Tablas extends Component {
       this.setState({puntos3 : puntaje })
     }
 
-    //Si termino no vuelvo a buscar niveles
+    //Guardo estado por si se sale el juego
+    var dataCheckpoint = {
+      'nivel': this.state.nivel,
+      'puntos1': this.state.puntos1,
+      'puntos2': this.state.puntos2,
+      'puntos3': this.state.puntos3,
+    };
+    localStorage.setItem(localStorage.getItem("nombre"), JSON.stringify(dataCheckpoint));
+
+    //Si termino no vuelvo a buscar niveles y borro estado.
     if (this.state.nivel === 3) {
-      Api.guardarPuntaje(this.props.name, this.state.puntos1+this.state.puntos2+this.state.puntos3)
+      localStorage.removeItem(localStorage.getItem("nombre"));
+      Api.guardarPuntaje(localStorage.getItem("nombre"), this.state.puntos1+this.state.puntos2+this.state.puntos3)
       this.setState({open: true});
       return;  
     }
@@ -180,8 +202,7 @@ class Tablas extends Component {
     const { classes } = this.props;
     return (
       <div className='column'>
-        <h1>Hola {this.props.name} - Estas en el Nivel {this.state.nivel}</h1>
-        <h1>{this.props.token}</h1>
+        <h1>Hola {localStorage.getItem("nombre")} - Estas en el Nivel {this.state.nivel}</h1>
         <h2 className='titleLeft'>Practiquemos las Tablas</h2>
         {this.state.nivel > 0 && 
           <div  className={classes.puntajeParcial}>
