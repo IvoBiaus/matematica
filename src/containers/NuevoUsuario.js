@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Api from '../controller/Api';
 import Modal from '@material-ui/core/Modal';
 import FooterImg from '../images/cat-looking.gif';
-import { Link } from 'react-router-dom';
+
 
 
 const useStyles = theme => ({
@@ -54,7 +54,7 @@ function getModalStyle() {
   };
 }
 
-class Home extends Component {
+class NuevoUsuario extends Component {
 
   constructor(props) {
     super(props);
@@ -62,9 +62,8 @@ class Home extends Component {
       name: '',
       password: '',
       open: false,
-      setOpen: '',
+      open1: false,
     }
-
   }
   isFormValid = () => {
     const { name } = this.state
@@ -80,13 +79,14 @@ class Home extends Component {
   }
 
   handleClick(e) {
-    
-    Api.login(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
+    // this.saySomething("element clicked");
+    Api.registro(this.state.name, this.state.password, this.resultadoUsuario.bind(this));
   }
 
-  resultadoUsuario(token, error) {
+  resultadoUsuario(existe, error) {
+
     //Manejo de errores
-    if(error != null) {
+    if (error != null) {
       if (error.message === '400') {
         this.setState({ open: true });
         return;
@@ -95,23 +95,22 @@ class Home extends Component {
         return;
       }
     }
-    
-    //Guardo token
-    if (token) {
-      this.props.showOptions();
-      this.props.history.push('/Seleccion')
-    } 
+    this.setState({ open1: true });
   }
 
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  componentDidMount() {
-    if (localStorage.getItem("nombre")) {
-      this.props.history.push('/Seleccion')
-    }
-  }
+  handleCloseAndExit = () => {
+    this.setState({ open: false });
+    this.props.history.push('/Home')
+  };
+
+  volver = () => {
+    this.props.history.push('/Home')
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -125,25 +124,26 @@ class Home extends Component {
           style={{ minHeight: '50vh' }}>
           <Grid item xs>
             <div>
-              <h1>Bienvenido a clases</h1>
+              <h1>Nuevo Usuario</h1>
             </div>
           </Grid>
           <Grid item xs>
-            <TextField id="standard-basic" label="Cómo te llamas?" onChange={(event) => { this.handleChangeName(event) }} />
+            <TextField id="standard-basic" label="Ingresá tu nombre" onChange={(event) => { this.handleChangeName(event) }} />
           </Grid>
           <Grid item xs>
-            <TextField id="standard-basic" type="password" label="Ingresá tu clave" onChange={(event) => { this.handleChangePass(event) }} />
+            <TextField id="standard-basic" type="password" label="Crea una clave" onChange={(event) => { this.handleChangePass(event) }} />
           </Grid>
           <Grid item xs>
-            <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Entrar</Button>
+            <Button className={classes.botonSecundario} variant="contained" onClick={this.handleClick.bind(this)} disabled={!this.state.name}>Guardar</Button>
           </Grid>
           <Grid item xs>
-            <Button className={classes.botonSecundario} variant="contained" component={Link} to={'/NuevoUsuario'}>Nuevo Usuario</Button>
+            <Button className={classes.botonSecundario} variant="contained" onClick={this.volver.bind(this)}>Volver</Button>
           </Grid>
         </Grid>
         <Grid item xs={3} className={classes.contenedroImg}>
           <img className={classes.imgFotter} src={FooterImg} alt="" />
         </Grid>
+        {/* Modal de nombre duplicado */}
         <Modal
           open={this.state.open}
           onClose={this.handleClose}
@@ -151,11 +151,27 @@ class Home extends Component {
           aria-describedby="simple-modal-description"
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <h2 id="simple-modal-title">Ups! Nombre de usuario o contraseña incorrecta</h2>
+            <h2 id="simple-modal-title">Ups! El nombre ya esta usado</h2>
             <p id="simple-modal-description">
-              Si es la primera vez que ingresas, hace click en Nuevo usuario para registrarte.
+              Elegí otro nombre diferente :)!!
             </p>
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
+          </div>
+        </Modal>
+
+        {/* Modal usuario creado exitosamente */}
+        <Modal
+          open={this.state.open1}
+          onClose={this.handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <div style={getModalStyle()} className={classes.paper}>
+            <h2 id="simple-modal-title">El usuario está creado</h2>
+            <p id="simple-modal-description">
+              Ya podes empezar!!
+            </p>
+            <Button variant="contained" onClick={this.handleCloseAndExit.bind(this)}>Aceptar</Button>
           </div>
         </Modal>
       </div>
@@ -165,4 +181,4 @@ class Home extends Component {
 }
 
 
-export default withStyles(useStyles)(Home);;
+export default withStyles(useStyles)(NuevoUsuario);;

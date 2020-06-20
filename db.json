@@ -1,12 +1,12 @@
 {
     "userFer": {
-        "existe": false
+        "existe": true
     },
     "userEstela": {
-        "existe": false
+        "existe": true
     },
     "userError": {
-        "existe": true
+        "existe": false
     },
     "puntajes": {
         "tablas": [
@@ -15,7 +15,7 @@
                 "puntos": "100"
             },
             {
-                "nombre": "de",
+                "nombre": "--",
                 "puntos": "200"
             },
             {
@@ -57,7 +57,7 @@
                 "puntos": "100"
             },
             {
-                "nombre": "de",
+                "nombre": "--",
                 "puntos": "200"
             },
             {
@@ -99,7 +99,7 @@
                 "puntos": "100"
             },
             {
-                "nombre": "de",
+                "nombre": "--",
                 "puntos": "200"
             },
             {
@@ -143,15 +143,15 @@
         },
         {
             "id": "2",
-            "operacion": "2x2"
-        },
-        {
-            "id": "3",
             "operacion": "2x3"
         },
         {
+            "id": "3",
+            "operacion": "2x4"
+        },
+        {
             "id": "4",
-            "operacion": "2x6"
+            "operacion": "2x8"
         },
         {
             "id": "5",
@@ -159,95 +159,371 @@
         },
         {
             "id": "6",
-            "operacion": "4x4"
+            "operacion": "3x1"
         },
         {
             "id": "7",
-            "operacion": "4x5"
+            "operacion": "3x6"
         },
         {
             "id": "8",
-            "operacion": "5x5"
+            "operacion": "3x7"
         },
         {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "3x2"
         }
     ],
     "tablas2": [
         {
             "id": "1",
-            "operacion": "20x2"
-        },
-        {
-            "id": "2",
-            "operacion": "30x2"
-        },
-        {
-            "id": "3",
-            "operacion": "22x3"
-        },
-        {
-            "id": "4",
-            "operacion": "2x61"
-        },
-        {
-            "id": "5",
-            "operacion": "3x3"
-        },
-        {
-            "id": "6",
-            "operacion": "4x4"
-        },
-        {
-            "id": "7",
-            "operacion": "4x5"
-        },
-        {
-            "id": "8",
             "operacion": "5x5"
         },
         {
+            "id": "2",
+            "operacion": "5x6"
+        },
+        {
+            "id": "3",
+            "operacion": "5x9"
+        },
+        {
+            "id": "4",
+            "operacion": "4x4"
+        },
+        {
+            "id": "5",
+            "operacion": "4x10"
+        },
+        {
+            "id": "6",
+            "operacion": "20x2"
+        },
+        {
+            "id": "7",
+            "operacion": "2x9"
+        },
+        {
+            "id": "8",
+            "operacion": "6x6"
+        },
+        {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "6x3"
         }
     ],
     "tablas3": [
         {
             "id": "1",
-            "operacion": "12312x2"
+            "operacion": "9x7"
         },
         {
             "id": "2",
-            "operacion": "30x2123123"
+            "operacion": "9x8"
         },
         {
             "id": "3",
-            "operacion": "22x112433"
+            "operacion": "9x9"
         },
         {
             "id": "4",
-            "operacion": "2x61"
+            "operacion": "10x2"
         },
         {
             "id": "5",
-            "operacion": "3x3"
+            "operacion": "8x7"
         },
         {
             "id": "6",
-            "operacion": "4x4"
+            "operacion": "8x8"
         },
         {
             "id": "7",
-            "operacion": "4x5"
+            "operacion": "7x7"
         },
         {
             "id": "8",
-            "operacion": "5x5"
+            "operacion": "20x7"
         },
         {
             "id": "9",
-            "operacion": "8x9"
+            "operacion": "20x13"
+        }
+    ],
+    "sumas1": [
+        {
+            "id": "1",
+            "operacion": "2 + 4 =",
+            "opciones": [
+                "8",
+                "6",
+                "5"
+            ],
+            "resultado": "6"
+        },
+        {
+            "id": "2",
+            "operacion": "5 + 6 =",
+            "opciones": [
+                "12",
+                "11",
+                "14"
+            ],
+            "resultado": "11"
+        },
+        {
+            "id": "3",
+            "operacion": "3 + 8 =",
+            "opciones": [
+                "12",
+                "13",
+                "11"
+            ],
+            "resultado": "11"
+        },
+        {
+            "id": "4",
+            "operacion": "6 + 3 =",
+            "opciones": [
+                "9",
+                "8",
+                "10"
+            ],
+            "resultado": "9"
+        },
+        {
+            "id": "5",
+            "operacion": "3 + 5 =",
+            "opciones": [
+                "7",
+                "8",
+                "9"
+            ],
+            "resultado": "8"
+        },
+        {
+            "id": "6",
+            "operacion": "4 + 6 =",
+            "opciones": [
+                "9",
+                "16",
+                "10"
+            ],
+            "resultado": "10"
+        },
+        {
+            "id": "7",
+            "operacion": "2 + 9 =",
+            "opciones": [
+                "11",
+                "13",
+                "12"
+            ],
+            "resultado": "11"
+        },
+        {
+            "id": "8",
+            "operacion": "9 + 5 =",
+            "opciones": [
+                "16",
+                "14",
+                "15"
+            ],
+            "resultado": "14"
+        },
+        {
+            "id": "9",
+            "operacion": "8 + 5 =",
+            "opciones": [
+                "14",
+                "12",
+                "13"
+            ],
+            "resultado": "13"
+        }
+    ],
+    "sumas2": [
+        {
+            "id": "1",
+            "operacion": "12 + 5 =",
+            "opciones": [
+                "14",
+                "17",
+                "19"
+            ],
+            "resultado": "17"
+        },
+        {
+            "id": "2",
+            "operacion": "11 + 5 =",
+            "opciones": [
+                "16",
+                "17",
+                "26"
+            ],
+            "resultado": "16"
+        },
+        {
+            "id": "3",
+            "operacion": "13 + 7 =",
+            "opciones": [
+                "19",
+                "21",
+                "20"
+            ],
+            "resultado": "20"
+        },
+        {
+            "id": "4",
+            "operacion": "17 + 5 =",
+            "opciones": [
+                "25",
+                "22",
+                "24"
+            ],
+            "resultado": "22"
+        },
+        {
+            "id": "5",
+            "operacion": "15 + 7 =",
+            "opciones": [
+                "22",
+                "20",
+                "23"
+            ],
+            "resultado": "22"
+        },
+        {
+            "id": "6",
+            "operacion": "14 + 5 =",
+            "opciones": [
+                "20",
+                "21",
+                "19"
+            ],
+            "resultado": "19"
+        },
+        {
+            "id": "7",
+            "operacion": "2 + 17 =",
+            "opciones": [
+                "19",
+                "18",
+                "20"
+            ],
+            "resultado": "19"
+        },
+        {
+            "id": "8",
+            "operacion": "4 + 19 =",
+            "opciones": [
+                "25",
+                "24",
+                "23"
+            ],
+            "resultado": "23"
+        },
+        {
+            "id": "9",
+            "operacion": "12 + 9 =",
+            "opciones": [
+                "20",
+                "21",
+                "28"
+            ],
+            "resultado": "21"
+        }
+    ],
+    "sumas3": [
+        {
+            "id": "1",
+            "operacion": "8 + 5 + 13 =",
+            "opciones": [
+                "26",
+                "30",
+                "32"
+            ],
+            "resultado": "26"
+        },
+        {
+            "id": "2",
+            "operacion": "5 + 24 + 3=",
+            "opciones": [
+                "37",
+                "32",
+                "38"
+            ],
+            "resultado": "32"
+        },
+        {
+            "id": "3",
+            "operacion": "8 + 5 + 32 =",
+            "opciones": [
+                "48",
+                "45",
+                "44"
+            ],
+            "resultado": "45"
+        },
+        {
+            "id": "4",
+            "operacion": "6 + 23 + 2=",
+            "opciones": [
+                "30",
+                "29",
+                "31"
+            ],
+            "resultado": "31"
+        },
+        {
+            "id": "5",
+            "operacion": "12 + 5 + 24 =",
+            "opciones": [
+                "44",
+                "41",
+                "46"
+            ],
+            "resultado": "41"
+        },
+        {
+            "id": "6",
+            "operacion": "4 + 15 + 32=",
+            "opciones": [
+                "53",
+                "49",
+                "51"
+            ],
+            "resultado": "51"
+        },
+        {
+            "id": "7",
+            "operacion": "11 + 5 + 28 =",
+            "opciones": [
+                "44",
+                "39",
+                "48"
+            ],
+            "resultado": "44"
+        },
+        {
+            "id": "8",
+            "operacion": "2 + 35 + 22 =",
+            "opciones": [
+                "60",
+                "59",
+                "62"
+            ],
+            "resultado": "59"
+        },
+        {
+            "id": "9",
+            "operacion": "18 + 4 + 42 =",
+            "opciones": [
+                "66",
+                "58",
+                "64"
+            ],
+            "resultado": "64"
         }
     ],
         "sumas1": [

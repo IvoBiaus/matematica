@@ -9,6 +9,7 @@ import Modal from '@material-ui/core/Modal';
 
 
 
+
 // const Container = styled.div`
 //   max-width: 980px;
 //   margin: 0 auto;
@@ -58,6 +59,16 @@ const useStyles = theme => ({
   notchedOutline: {
     borderWidth: "2px",
     borderColor: "white !important",
+  },
+  puntajeParcial: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: '400px',
+    fontFamily: 'cursive',
+  },
+  nivel: {
+    textAlign: 'left',
+    fontFamily: 'cursive',
   }
 });
 
@@ -81,6 +92,9 @@ class Tablas extends Component {
       data1: [],
       data2: [],
       data3: [],
+      puntos1: '---',
+      puntos2: '---',
+      puntos3: '---',
       open: false,
       setOpen: '',
       resultados: [],
@@ -89,11 +103,24 @@ class Tablas extends Component {
 
   handleClose = () => {
     this.setState({open: false});
+    this.props.history.push('/Seleccion');
   };
 
   componentDidMount() 
   {
-    Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
+    if (localStorage.getItem(localStorage.getItem("nombre") + 'Tablas' ) ) {
+      var obj = localStorage.getItem(localStorage.getItem("nombre")+'Tablas');
+      var json = JSON.parse(obj);
+      
+      this.setState({nivel: json.nivel + 1});
+      this.setState({puntos1: json.puntos1});
+      this.setState({puntos2: json.puntos2});
+      this.setState({puntos3: json.puntos3});
+
+      Api.obtenerNivelTablas(json.nivel + 1, this.resultTablas.bind(this));
+    } else {
+      Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
+    }
   }
   resultTablas (ejercicios, nivel, error)
   {
@@ -113,11 +140,46 @@ class Tablas extends Component {
   }
 
   
-  avanzarNivel(e) {
+  async avanzarNivel(e) {
+    //Scroll al top para mobile
+    window.scrollTo(0, 0);
+    var puntaje;
+    //Calculo puntaje contra la api y seteo
+    if(this.state.nivel === 1) {
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos1 : puntaje });
+    }
+    if(this.state.nivel === 2) {
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos2 : puntaje })
+    }
+    if(this.state.nivel === 3) {
+      puntaje = await Api.verificarTablas(this.state.nivel, this.state.resultados);
+      this.setState({puntos3 : puntaje })
+    }
+
+    //Guardo estado por si se sale el juego
+    var dataCheckpoint = {
+      'nivel': this.state.nivel,
+      'puntos1': this.state.puntos1,
+      'puntos2': this.state.puntos2,
+      'puntos3': this.state.puntos3,
+    };
+    localStorage.setItem(localStorage.getItem("nombre")+'Tablas', JSON.stringify(dataCheckpoint));
+
+    //Si termino no vuelvo a buscar niveles y borro estado.
+    if (this.state.nivel === 3) {
+      localStorage.removeItem(localStorage.getItem("nombre")+'Tablas');
+      Api.guardarPuntaje(localStorage.getItem("nombre"), this.state.puntos1+this.state.puntos2+this.state.puntos3)
+      this.setState({open: true});
+      return;  
+    }
+
+    //Avanzo nivel - imprimo resultado para pruebas
     this.setState({nivel: this.state.nivel + 1});
-    console.log(this.state.resultados);
+    // console.log(this.state.resultados);
     this.setState({resultados: []});
-    Api.obtenerNivelTablas(this.state.nivel + 1, this.resultTablas.bind(this));
+    Api.obtenerNivelTablas(this.state.nivel, this.resultTablas.bind(this));
   }
 
   // retrocederNivel(e) {
@@ -129,7 +191,10 @@ class Tablas extends Component {
   guardarResultado(operacion, e) {
     let val = e.target.value;
     const array = this.state.resultados;
-    array[e.target.id - 1] = ([operacion, val]);
+    // array[e.target.id - 1] = ([operacion, val]);
+
+    array.push({"op": operacion , "resultado": val})
+
     this.setState({resultados: array});
   }
 
@@ -137,15 +202,33 @@ class Tablas extends Component {
     const { classes } = this.props;
     return (
       <div className='column'>
-        <h1>Hola {this.props.name}</h1>
-        <h2 className='titleCenter'>Practiquemos las Tablas</h2>
-        <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
+        <h1>Hola {localStorage.getItem("nombre")} - Estas en el Nivel {this.state.nivel}</h1>
+        <h2 className='titleLeft'>Practiquemos las Tablas</h2>
+        {this.state.nivel > 0 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 1</h3> 
+            
+            <h3>Puntos: {this.state.puntos1}</h3>
+          </div>}
 
+          {this.state.nivel > 1 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 2</h3> 
+            
+            <h3>Puntos: {this.state.puntos2}</h3>
+          </div>}
+
+          {this.state.nivel > 2 && 
+          <div  className={classes.puntajeParcial}>
+            <h3 className={classes.nivel}>Nivel 3</h3> 
+            
+            <h3>Puntos: {this.state.puntos3}</h3>
+          </div>}
 
         {this.state.nivel === 1 && <form className={classes.root}>
-          {this.state.data1.map((row) => (        
+          {this.state.data1.map((row) => (
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -159,16 +242,16 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
         {this.state.nivel === 2 && <form className={classes.root}>
           {this.state.data2.map((row) => (        
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -182,16 +265,16 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
         {this.state.nivel === 3 && <form className={classes.root}>
           {this.state.data3.map((row) => (        
               <TextField 
-                key={row.id}
+                key={row._id}
                 variant="outlined" 
                 InputLabelProps={{
                   classes: {
@@ -205,9 +288,9 @@ class Tablas extends Component {
                     notchedOutline: classes.notchedOutline,
                   }
                 }}
-                id={row.id} 
-                label={row.operacion}
-                onChange = {(e) => this.guardarResultado(row.operacion, e)} />
+                id={row._id} 
+                label={row.op}
+                onChange = {(e) => this.guardarResultado(row.op, e)} />
             ))}
         </form>}
 
@@ -217,7 +300,7 @@ class Tablas extends Component {
           {/* No tiene sentido retrocederNivel ? */}
           {/* {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>} */}
           {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Siguiente</Button>}
-          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({open: true})} className={classes.boton}>Finalizar</Button>}
+          {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} className={classes.boton}>Finalizar</Button>}
         </div>
 
 
@@ -232,7 +315,7 @@ class Tablas extends Component {
           <div style={getModalStyle()} className={classes.paper}>
             <h2 id="simple-modal-title">Terminaste los ejercicios</h2>
             <p id="simple-modal-description">
-              Tu puntaje es "xxxxxx"
+              Tu puntaje es {this.state.puntos1 + this.state.puntos2 + this.state.puntos3}
             </p>
             <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
           </div>

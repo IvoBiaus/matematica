@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import AppByM1 from '../components/Ejercicios/ByM/AppByM1';
 import AppByM2 from '../components/Ejercicios/ByM/AppByM2';
 import AppByM3 from '../components/Ejercicios/ByM/AppByM3';
+import NuevoUsuario from './NuevoUsuario'
 
 const Container = styled.div`
   ${'' /* max-width: 980px; */}
@@ -50,44 +51,39 @@ const useStyles = theme => ({
 class App extends Component {
 
   state = {
-    mostrar: 'Bienvenido',
-    name: '',
-    show: false
+    name: localStorage.getItem("nombre"),
+    show: localStorage.getItem("token") ? true : false,
   };
 
-  resetName = () => {
-    this.setState({
-      mostrar: 'Bienvenido',
-      show: false,
-    })
+  showOptions = () => {
+    this.setState({ show: true });
   }
 
-  changeName = (newName) => {
-    this.setState({ name: newName })
+  hideOptions = () => {
+    this.setState({ show: false });
   }
 
-  handleClick = () => {
-    this.setState({
-      mostrar: this.state.mostrar + ' ' + this.state.name,
-      show: true,
-    })
-  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Hero name={this.state.mostrar} />
+        <Hero />
         <BrowserRouter>
           <div>
             <Container>
-              <Barra login={this.state.show} />
+              <Barra show={this.state.show} hideOptions={this.hideOptions}/>
               <Grid>
                 <Grid item xs={12}>
                   <Switch>
                     <Route
                       path="/"
                       exact
-                      render={(props) => <Home {...props} onClick={this.handleClick} changeName={this.changeName} reset={this.resetName} />}
+                      render={(props) => <Home {...props} showOptions={this.showOptions}/>}
+                    />
+                    <Route
+                      path="/NuevoUsuario"
+                      exact
+                      component={NuevoUsuario}
                     />
                     <Route
                       path="/Seleccion"

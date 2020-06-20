@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { withStyles  } from '@material-ui/core/styles';
 
-
-const useStyles = theme => ({
+// Estilos
+const useStyles = {
     boton: {
       marginRight: 16,
       marginTop: 5,
@@ -20,22 +20,25 @@ const useStyles = theme => ({
       textAlign: 'center',
       transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
     },
-  });
+  };
+
 
 class Bienvenido extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
+              <div>
                 <Grid container
                     spacing={0}
-                    direction="column"
+                    direction="row"
                     alignItems="center"
                     justify="center"
-                    style={{ minHeight: '20vh' }}>
+                    style={{ minHeight: '20vh' }}
+                    >
                     <div className='column'>
                         <h1> {this.props.name} selecciona el nivel a Jugar !</h1>
                         <div>
+                        {/* Botones seleccion  */}
                             <h2> Fácil</h2>
                             <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM1'} onClick={this.props.onClick} >Nivel 1</Button>
                             <h2> Normal</h2>
@@ -50,3 +53,5 @@ class Bienvenido extends Component {
     }
 }
 export default withStyles(useStyles)(Bienvenido);
+
+

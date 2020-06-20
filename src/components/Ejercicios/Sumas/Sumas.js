@@ -1,6 +1,5 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { withStyles  } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,6 @@ import Api from '../../../controller/Api';
 import Modal from '@material-ui/core/Modal';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
 
 // const Container = styled.div`
 //   max-width: 980px;
@@ -172,7 +170,7 @@ class Sumas extends Component {
   addToAnswer = (item, resultado) => {
     var result = this.state.puntos;
     
-    if(item == resultado){
+    if(item === resultado){
       this.setState({open: true})
       this.setState({openError: false})
       result = result + 5;

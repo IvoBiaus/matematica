@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar(props) {
   const classes = useStyles();
-  const name = props.name;
 
   return (
     <div className={classes.root}>
@@ -28,7 +27,7 @@ export default function ButtonAppBar(props) {
         <Toolbar>
             <SchoolIcon></SchoolIcon>
             <Typography variant="h6" className={classes.title}>
-                {name}
+                Bienvenido {localStorage.getItem("nombre")}
             </Typography>
         </Toolbar>
       </AppBar>
