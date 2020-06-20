@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 
 /*Imagenes de Monedas  */
@@ -18,103 +19,135 @@ import cienpesos from './images/billetesymonedas/billetes/cienpesos.png';
 import doscientospesos from './images/billetesymonedas/billetes/cienpesos.png';
 import quinientospesos from './images/billetesymonedas/billetes/quinientospesos.png';
 import milpesos from './images/billetesymonedas/billetes/milpesos.png';
+import FooterImg from '../../../images/cat-walking.gif';
 
 /* Funcion principal  */
 export default function StickyFooter(props) {
 
-   /* Constantes  */
+  /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [ 
-  { bille: diezpesos,
-    valor:10},
-  { bille: veintepesos,
-    valor:20},
-  { bille: cincuentapesos,
-    valor:50}, 
-  { bille: cienpesos,
-    valor:100},
-  { bille: doscientospesos,
-    valor: 200},
-  { bille: quinientospesos,
-    valor:500},
-  { bille: milpesos,
-    valor: 1000}];    
+  const imageCollection = [
+    {
+      bille: diezpesos,
+      valor: 10
+    },
+    {
+      bille: veintepesos,
+      valor: 20
+    },
+    {
+      bille: cincuentapesos,
+      valor: 50
+    },
+    {
+      bille: cienpesos,
+      valor: 100
+    },
+    {
+      bille: doscientospesos,
+      valor: 200
+    },
+    {
+      bille: quinientospesos,
+      valor: 500
+    },
+    {
+      bille: milpesos,
+      valor: 1000
+    }];
   const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
 
   const imageCollectionMonedas = [
-  {mone: unpeso,
-  valor: 1},
-  {mone: dospesos,
-  valor: 2},
-  {mone: cincopesos,
-  valor: 5}];
+    {
+      mone: unpeso,
+      valor: 1
+    },
+    {
+      mone: dospesos,
+      valor: 2
+    },
+    {
+      mone: cincopesos,
+      valor: 5
+    }];
   const getRandomImageMonedas = () => imageCollectionMonedas[Math.floor(Math.random() * imageCollectionMonedas.length)];
-  
-  var bille1=0,bille2=0,mon=0;
+
+  var bille1 = 0, bille2 = 0, mon = 0;
 
 
   return (
     <div className={classes.root}>
-      <Container component="main" className={classes.main} maxWidth="sm">
+      <Grid container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '50vh' }}>
+        <Grid item md={6} className={classes.contenedroImg}>
+          <img className={classes.imgFotter} src={FooterImg} alt="" />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Container component="main" className={classes.main} maxWidth="sm">
 
-        {/* Comienzo  */}
-        <Typography variant="h4" component="h4" gutterBottom>
-        Billetes y Monedas
+            {/* Comienzo  */}
+            <Typography variant="h4" component="h4" gutterBottom>
+              Billetes y Monedas
         </Typography>
-        <Typography variant="h6" component="h6" gutterBottom>
-        Voy a un kiosco con éste dinero que me regalaron y quiero comprar un chocolate de $20 pesos.
+            <Typography variant="h6" component="h6" gutterBottom>
+              Voy a un kiosco con éste dinero que me regalaron y quiero comprar un chocolate de $20 pesos.
         </Typography>
-        <Typography variant="h6" component="h6" gutterBottom>
-        ¿ Cuanto me dan de vuelto ?
+            <Typography variant="h6" component="h6" gutterBottom>
+              ¿ Cuanto me dan de vuelto ?
         </Typography>
-        <Container maxWidth="l">
-        </Container>
+            {/* <Container maxWidth="l">
+        </Container> */}
 
-        {/* Cantidad Cuadro de texto  */}
-        <TextField id="outlined-basic" label="$" variant="outlined" onChange = {props.onChange} value = {props.valorUsuario}  />
-       
-        {/* Boton Enviar  */}
-        <div>
-        <p></p>
-        <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={resultadoN1} >
-        Enviar
+            {/* Cantidad Cuadro de texto  */}
+            <TextField id="outlined-basic" label="$" variant="outlined" onChange={props.onChange} value={props.valorUsuario} />
+
+            {/* Boton Enviar  */}
+            <div>
+              <p></p>
+              <Button variant="contained" size="small" color="primary" className={classes.margin} onClick={resultadoN1} >
+                Enviar
         </Button>
-        </div>
-       
-        </Container>
-        
-        {/* Fotos random de billetes y monedas  */}
-        <Container maxWidth="sm">
-        <div className="App">
-        <header className="App-header">
-        <img src={getRandomImage().bille} bille1={getRandomImage().valor}  alt="billete" />
-        <h5>+</h5>
-        <img src={getRandomImage().bille} bille2={getRandomImage().valor} alt="billete"/>
-        <h5>+</h5>
-        <img src={getRandomImageMonedas().mone} mon={getRandomImageMonedas().valor} className="App-logo" alt="logo" />
-        </header>
-        </div>
-        
-        {/* Boton volver a niveles  */}
-        <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
-        </Container>
-    
+            </div>
+
+          </Container>
+
+          {/* Fotos random de billetes y monedas  */}
+          <Container maxWidth="sm">
+            <div className="App">
+              <header className="App-header">
+                <img src={getRandomImage().bille} bille1={getRandomImage().valor} alt="billete" />
+                <h5>+</h5>
+                <img src={getRandomImage().bille} bille2={getRandomImage().valor} alt="billete" />
+                <h5>+</h5>
+                <img src={getRandomImageMonedas().mone} mon={getRandomImageMonedas().valor} className="App-logo" alt="logo" />
+              </header>
+            </div>
+
+            {/* Boton volver a niveles  */}
+            <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
+          </Container>
+        </Grid>
+      </Grid>
     </div>
-   
+
   );
-  
- 
-  }
 
-function resultadoN1 (bille1, bille2, mon, valorUsuario){
-  let total = bille1+ bille2 + mon ;
-  const alBack = [{ cuentadeBilletesYMonedas: total, valor: valorUsuario}];
-return alBack;
+
 }
-     
+
+function resultadoN1(bille1, bille2, mon, valorUsuario) {
+  let total = bille1 + bille2 + mon;
+  const alBack = [{ cuentadeBilletesYMonedas: total, valor: valorUsuario }];
+  return alBack;
+}
 
 
-// Estilos  
+
+// Estilos
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -151,7 +184,17 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
-
+  imgFotter: {
+    width: '100%',
+  },
+  contenedroImg: {
+    justifyContent: 'flex-end',
+    flex: '1 1',
+    minWidth: '0',
+    minHeight: '0',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 }));
 
 

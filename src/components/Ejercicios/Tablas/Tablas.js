@@ -108,8 +108,8 @@ class Tablas extends Component {
 
   componentDidMount() 
   {
-    if (localStorage.getItem(localStorage.getItem("nombre"))) {
-      var obj = localStorage.getItem(localStorage.getItem("nombre"));
+    if (localStorage.getItem(localStorage.getItem("nombre") + 'Tablas' ) ) {
+      var obj = localStorage.getItem(localStorage.getItem("nombre")+'Tablas');
       var json = JSON.parse(obj);
       
       this.setState({nivel: json.nivel + 1});
@@ -165,11 +165,11 @@ class Tablas extends Component {
       'puntos2': this.state.puntos2,
       'puntos3': this.state.puntos3,
     };
-    localStorage.setItem(localStorage.getItem("nombre"), JSON.stringify(dataCheckpoint));
+    localStorage.setItem(localStorage.getItem("nombre")+'Tablas', JSON.stringify(dataCheckpoint));
 
     //Si termino no vuelvo a buscar niveles y borro estado.
     if (this.state.nivel === 3) {
-      localStorage.removeItem(localStorage.getItem("nombre"));
+      localStorage.removeItem(localStorage.getItem("nombre")+'Tablas');
       Api.guardarPuntaje(localStorage.getItem("nombre"), this.state.puntos1+this.state.puntos2+this.state.puntos3)
       this.setState({open: true});
       return;  
