@@ -109,12 +109,11 @@ class Puntajes extends React.Component {
       <div>
         <h1 className='titleCenter'>Puntaje de los almunos</h1>
         <div>
-          <Grid container className={classes.root} 
-          direction="column"
-          alignItems="center"
-          justify="center"
-          
-          style={{ minHeight: '50vh' }} >
+          <Grid container className={classes.root}
+            direction="row"
+            alignItems="center"
+            justify="center"
+            style={{ minWeight: '50vh' }} >
             <Grid item xs>
               <ExpansionPanel className={classes.panel}>
                 <ExpansionPanelSummary
@@ -232,6 +231,12 @@ class Puntajes extends React.Component {
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             </Grid>
+          </Grid>
+          <Grid container className={classes.root}
+            direction="row"
+            alignItems="center"
+            justify="center"
+            style={{ minHeight: '50vh' }} >
             <Grid>
               <Button className={classes.botonError} variant="contained" onClick={() => this.props.history.go(-1)}>Volver</Button>
             </Grid>
