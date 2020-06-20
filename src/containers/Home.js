@@ -108,7 +108,9 @@ class Home extends Component {
   };
 
   componentDidMount() {
-
+    if (localStorage.getItem("nombre")) {
+      this.props.history.push('/Seleccion')
+    }
   }
 
   render() {

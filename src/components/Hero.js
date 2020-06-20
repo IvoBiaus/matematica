@@ -27,7 +27,7 @@ export default function ButtonAppBar(props) {
         <Toolbar>
             <SchoolIcon></SchoolIcon>
             <Typography variant="h6" className={classes.title}>
-                Bienvenido
+                Bienvenido {localStorage.getItem("nombre")}
             </Typography>
         </Toolbar>
       </AppBar>
