@@ -107,13 +107,13 @@ class Puntajes extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <h1 className='titleCenter'>Puntaje de los almunos</h1>
+        <h1 className='titleCenter'>Puntaje de los alumnos</h1>
         <div>
           <Grid container className={classes.root}
             direction="row"
             alignItems="center"
             justify="center"
-            style={{ minWeight: '50vh' }} >
+          >
             <Grid item xs>
               <ExpansionPanel className={classes.panel}>
                 <ExpansionPanelSummary
