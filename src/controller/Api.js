@@ -203,5 +203,42 @@ class Api {
             });
     }
 
+    guardarPuntajeBilletes(nombre, puntaje) {
+        const url = 'http://localhost:4000/';
+        const method= "api/scores/score/"
+
+        var request = {
+            'name': nombre,
+            'game': 'Billetes',
+            'score': puntaje
+        }
+
+        const options = { 
+            method: 'POST', 
+            headers: new Headers({
+              'x-access-token':  localStorage.getItem("token"),
+              'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(request)
+        };
+
+        const endpoint = `${url}${method}`;
+            fetch(endpoint, options
+            ).then ((response) => {
+                if (response.status === 201) {
+                    return response.json();
+                }
+                throw new Error(response.status);    
+            }).then (responseData => {
+                // console.log("respuesta bruta",responseData);
+                //Obtengo resultados                
+
+            }).catch(error => {
+                console.log("Error en guardar puntajes");
+            });
+    
+                
+    }
+
 }
 export default new Api();

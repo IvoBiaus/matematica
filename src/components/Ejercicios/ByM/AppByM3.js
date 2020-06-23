@@ -1,52 +1,89 @@
-import React from 'react';
+import React from 'react'
+import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
+import Api from '../../../controller/Api';
 import './App.css';
 
+/*Imagenes de Monedas  */
+import unpeso from './images/billetesymonedas/monedas/unpeso.png';
+import dospesos from './images/billetesymonedas/monedas/dospesos.png';
+import cincopesos from './images/billetesymonedas/monedas/cincopesos.png';
 /* Imagenes de Billetes  */
 import diezpesos from './images/billetesymonedas/billetes/diezpesos.png';
 import veintepesos from './images/billetesymonedas/billetes/veintepesos.png';
 import cincuentapesos from './images/billetesymonedas/billetes/cincuentapesos.png';
 import cienpesos from './images/billetesymonedas/billetes/cienpesos.png';
-import doscientospesos from './images/billetesymonedas/billetes/cienpesos.png';
+import doscientospesos from './images/billetesymonedas/billetes/doscientospesos.png';
 import quinientospesos from './images/billetesymonedas/billetes/quinientospesos.png';
 import milpesos from './images/billetesymonedas/billetes/milpesos.png';
+/* Imagene extras  */
+import choco from './images/billetesymonedas/choco.png';
+import gatoEstudia from './images/billetesymonedas/gatoestudia.gif';
+import gatoFeliz from './images/billetesymonedas/gatofeliz.gif';
+/* Imagen Gato Grande */
 import FooterImg from '../../../images/cat-walking.gif';
-/* Imagene Kiosco  */
-import kiosco from './images/billetesymonedas/m/kiosco.png';
-
 /* Funcion principal  */
 export default function StickyFooter(props) {
 
   /* Constantes  */
   const classes = useStyles();
-  const imageCollection = [ 
-    { bille: diezpesos,
-      valor:10},
-    { bille: veintepesos,
-      valor:20},
-    { bille: cincuentapesos,
-      valor:50}, 
-    { bille: cienpesos,
-      valor:100},
-    { bille: doscientospesos,
-      valor: 200},
-    { bille: quinientospesos,
-      valor:500},
-    { bille: milpesos,
-      valor: 1000}];    
-    const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
-    var bille1=0,bille2=0,kios=230;
+  const imageCollection = [
+    {
+      bille: diezpesos,
+      valor: 10
+    },
+    {
+      bille: veintepesos,
+      valor: 20
+    },
+    {
+      bille: cincuentapesos,
+      valor: 50
+    },
+    {
+      bille: cienpesos,
+      valor: 100
+    },
+    {
+      bille: doscientospesos,
+      valor: 200
+    },
+    {
+      bille: quinientospesos,
+      valor: 500
+    },
+    {
+      bille: milpesos,
+      valor: 1000
+    }];
+  const getRandomImage = () => imageCollection[Math.floor(Math.random() * imageCollection.length)];
 
+  const imageCollectionMonedas = [
+    {
+      mone: unpeso,
+      valor: 1
+    },
+    {
+      mone: dospesos,
+      valor: 2
+    },
+    {
+      mone: cincopesos,
+      valor: 5
+    }];
+  const getRandomImageMonedas = () => imageCollectionMonedas[Math.floor(Math.random() * imageCollectionMonedas.length)];
+
+  var billete1 = getRandomImage();
+  var billete2 = getRandomImage();
+  var moneda = getRandomImageMonedas();
+  var TotalByM = billete1.valor + billete2.valor + moneda.valor;
   return (
     <div className={classes.root}>
       <Grid container
@@ -61,35 +98,32 @@ export default function StickyFooter(props) {
         <Grid item xs={12} md={6}>
           <Container component="main" className={classes.main} maxWidth="sm">
             {/* Comienzo  */}
-            <Typography variant="h4" component="h4" gutterBottom>
-              Billetes y Monedas
-        </Typography>
+            <h2>Hola {localStorage.getItem("nombre")} estás en el Nivel 3 - 30 Puntos</h2>
             <Typography variant="h6" component="h6" gutterBottom>
-              Si quiero comprar 5 golosinas distintas, ¿Me alcanza con éste dinero?
-        </Typography>
-
-            {/* Selec de la func Si o No  */}
-            <div>
-              <ErrorRadios />
-              <p></p>
+              Con éste dinero,si queres comprar un chocolate de $20 pesos.
+         </Typography>
+            <div className="App">
+              <header className="App-header">
+                <img src={choco} className="App-choco" alt="chocolate" />
+              </header>
             </div>
-
+            <Typography variant="h6" component="h6" gutterBottom>¿ Cuánto te sobra ?</Typography>
+            {/* Cantidad Cuadro de texto + Boton Enviar */}
+            <ValordeEntrada c={TotalByM} />
           </Container>
-          {/* Fotos random de billetes */}
+          {/* Fotos random de billetes y monedas  */}
           <Container maxWidth="sm">
             <div className="App">
               <header className="App-header">
-              <img src={getRandomImage().bille} bille1={getRandomImage().valor}  alt="billete" />
-              <h5>+</h5>
-              <img src={getRandomImage().bille} bille2={getRandomImage().valor} alt="billete"/>
-              <p></p>
-              <img src={kiosco} alt="kiosco" />
-              <p></p>
+                <img src={billete1.bille} alt="billete" />
+                <h4>+</h4>
+                <img src={billete2.bille} alt="billete" />
+                <h4>+</h4>
+                <img src={moneda.mone} className="App-logo" alt="logo" />
               </header>
             </div>
-
-            {/* Boton volver a niveles  */}
-            <Button className={classes.boton} variant="contained" onClick={() => props.history.go(-1)}>Volver a Niveles</Button>
+            {/* Subir 1 nivel */}
+            <Button className={classes.boton} variant="contained" component={Link} to={'/Seleccion'}>Finalizar</Button>
           </Container>
         </Grid>
       </Grid>
@@ -97,60 +131,111 @@ export default function StickyFooter(props) {
   );
 }
 
-
-function resultado (bille1, bille2, kios, valorUsuario){
-  let total = bille1+ bille2;
-  const alBack = [{ cuentadeBilletesYMonedas: total, valor: valorUsuario}];
-return alBack;
-}
-
-// Func para selec Si o No 
-function ErrorRadios() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState('');
-
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-    setHelperText(' ');
-    setError(false);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (value === 'best') {
-      setError(false);
-    } else if (value === 'worst') {
-      setError(true);
-    } else {
-      setHelperText('¿Cual es la respuesta?');
-      setError(true);
-    }
-  };
+//Funcion valor entrada del usuario
+function ValordeEntrada(props) {
+  const [valorUsuario, setValorUsuario] = useState("")
+  var valorChoco = 20;
+  var valorUsuMenosChoco = (Number(valorUsuario)) + (Number(valorChoco));
+  var Total = props.c;
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl component="fieldset" error={error} className={classes.formControl}>
-        <FormLabel component="legend">Elige una opción</FormLabel>
-        <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
-          <FormControlLabel value="best" control={<Radio />} label="Si" />
-          <FormControlLabel value="worst" control={<Radio />} label="No" />
-        </RadioGroup>
-        <FormHelperText>{helperText}</FormHelperText>
-        <Button type="submit" variant="outlined" color="primary" className={classes.button} onChange={handleRadioChange}>
-          Enviar
-        </Button>
-      </FormControl>
-    </form>
-  );
+    <div>
+      <form >
+        <div>
+          <TextField id="outlined-basic" label="$" variant="outlined" type="text" value={valorUsuario} onChange={(e) => setValorUsuario(e.target.value)} />
+        </div>
+      </form>
+      <div>
+        <p></p>
+        <Evento a={Total} b={valorUsuMenosChoco} />
+      </div>
+    </div>
+  )
 }
 
+// Boton enviar y  Evento
+function Evento(props) {
+  const puntajeOk = 30;
+  const [count, setCount] = useState(0);
+  const classes = useStyles();
+  const [openSi, setOpenSi] = React.useState(false);
+  const handleOpenSi = () => { setOpenSi(true); setCount(count + puntajeOk); };
+  const handleCloseSi = () => { setOpenSi(false); };
+  const [openNo, setOpenNo] = React.useState(false);
+  const handleOpenNo = () => { setOpenNo(true); };
+  const handleCloseNo = () => { setOpenNo(false); };
+  if (props.a === props.b) {
+    return (
+      <div>
+        <Button type="button" variant="contained" size="small" color="primary" className={classes.margin} onClick={handleOpenSi} >
+          Enviar
+      </Button>
+        <div>
+          <Modal
+            open={openSi}
+            onClose={handleCloseSi}
+            disableBackdropClick={true}
+            disableEscapeKeyDown={true}
+            disableScrollLock={false}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description">
+            <div style={getModalStyle()} className={classes.paper}>
+              <h1 id="simple-modal-title">Bien ! Respuesta Correcta !!!</h1>
+              <h2 id="simple-modal-description"> Ganaste {puntajeOk} Puntos !</h2>
+              <h3 id="simple-modal-title">Llevás acumulado en este Nivel {count} Puntos </h3>
+              <EnvioApi x={puntajeOk} />
+              <img src={gatoFeliz} className="App-choco" alt="gato" />
+              <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM3'} onClick={handleCloseSi} >Vuelve a jugar!</Button>
+            </div>
+          </Modal>
+        </div>
+      </div>
+    );
+  }
+  else {
+    return (
+      <div>
+        <Button type="button" variant="contained" size="small" color="primary" className={classes.margin} onClick={handleOpenNo} >
+          Enviar
+       </Button>
+        <Modal
+          open={openNo}
+          onClose={handleCloseNo}
+          disableBackdropClick={true}
+          disableEscapeKeyDown={true}
+          disableScrollLock={false}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description">
+          <div style={getModalStyle()} className={classes.paper}>
+            <h1 id="simple-modal-title">No es esa opción :(</h1>
+            <h3 id="simple-modal-description"> No ganaste puntos, Jugá de nuevo !!! </h3>
+            <h3 id="simple-modal-title">Llevás acumulado en este Nivel {count} Puntos </h3>
+            <img src={gatoEstudia} className="App-choco" alt="gato" />
+            <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM3'} onClick={handleCloseNo} >Vuelve a jugar!</Button>
+          </div>
+        </Modal>
+      </div>
+    );
+  }
+}
 
-function resultadoN3 (bille1, bille2, kiosco, valorUsuario){
-  let total = bille1+ bille2;
-  const alBack = [{ cuentadeBilletesYMonedas: total, valork: kiosco, valor: valorUsuario}];
-return alBack;
+// envio a controller
+function EnvioApi(props) {
+  const puntaje = 30;
+  if (props.x === puntaje) {
+    Api.guardarPuntajeBilletes(localStorage.getItem("nombre"), puntaje);
+    return (
+      <div>
+        <h5>Los puntos fueron cargados al puntaje general</h5>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div>
+        <h5>No se cargaron puntos al puntaje general</h5>
+      </div>
+    )
+  }
 }
 
 // Estilos  
@@ -173,7 +258,7 @@ const useStyles = makeStyles((theme) => ({
   boton: {
     marginRight: 16,
     marginTop: 5,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#9BABF5',
     color: '#000000',
     borderRadius: '200px',
     display: 'inline-block',
@@ -184,15 +269,31 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     transition: 'all 290ms cubic-bezier(0.79, 0.01, 0.38, 0.99)',
   },
-  imgFotter: {
+  paper: {
+    position: 'absolute',
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  alerta: {
     width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
-  contenedroImg: {
-    justifyContent: 'flex-end',
-    flex: '1 1',
-    minWidth: '0',
-    minHeight: '0',
-    display: 'flex',
-    flexDirection: 'column',
-  },
+
 }));
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+
+
+  };
+}

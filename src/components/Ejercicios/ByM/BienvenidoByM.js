@@ -36,7 +36,7 @@ class Bienvenido extends Component {
                     style={{ minHeight: '20vh' }}
                     >
                     <div className='column'>
-                        <h1> {this.props.name} selecciona el nivel a Jugar !</h1>
+                        <h1>{localStorage.getItem("nombre")} seleccioná el nivel a Jugar !</h1>
                         <div>
                         {/* Botones seleccion  */}
                             <h2> Fácil</h2>
