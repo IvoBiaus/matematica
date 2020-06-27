@@ -178,7 +178,7 @@ function Evento(props) {
               <h1 id="simple-modal-title">Bien ! Respuesta Correcta !!!</h1>
               <h2 id="simple-modal-description"> Ganaste 20 Puntos !</h2>
               <h3 id="simple-modal-title">Llevás acumulado en este Nivel {count} Puntos </h3>
-              <EnvioApi x={puntajeOk} />
+              <EnvioApi x={puntajeOk} y={count} />
               <img src={gatoFeliz} className="App-choco" alt="gato" />
               <Button className={classes.boton} type="submit" variant="contained" component={Link} to={'/AppByM2'} onClick={handleCloseSi}  >Vuelve a jugar!</Button>
             </div>
@@ -214,13 +214,14 @@ function Evento(props) {
   }
 }
 
+// envio a controller
 function EnvioApi(props) {
   const puntaje = 20;
-  if (props.x === puntaje) {
-    Api.guardarPuntajeBilletes(localStorage.getItem("nombre"), puntaje);
+   if (props.x === puntaje) {
+    Api.guardarPuntajeBilletes(localStorage.getItem("nombre"), props.y);
     return (
       <div>
-        <h5>Los puntos fueron cargados al puntaje general</h5>
+       
       </div>
     )
   }
