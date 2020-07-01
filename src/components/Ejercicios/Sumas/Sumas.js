@@ -8,12 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Container from '@material-ui/core/Container';
 import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-// const Container = styled.div`
-//   max-width: 980px;
-//   margin: 0 auto;
-// `;
 
 const useStyles = theme => ({
   root: { 
@@ -108,6 +103,7 @@ class Sumas extends Component {
       data2: [],
       data3: [],
       openModal: false,
+      openInformation: false,
       open: false,
       openError: false,
       setOpen: '',
@@ -125,12 +121,29 @@ class Sumas extends Component {
     this.setState({openModal: false});
     this.setState({open: false});
     this.setState({openError: false});
+    this.setState({openInformation: false});
   };
 
   componentDidMount() 
   {
     Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
+    Api.obtenerEstadoDeJuego("Sumas", this.props.name, "Incompleto", this.resultEstadoJuego.bind(this));
+    
   }
+  resultEstadoJuego (res)
+  {
+    if(res === null || res.data.state === "Completo"){
+      //Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
+    } else {
+      this.setState({openInformation: true});
+      this.setState({nivel: res.data.lvl + 1});
+      this.setState({puntos: res.data.score});
+      this.setState({resultados: []});
+      Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
+      this.setState({valueNext: 'CINCO'});
+    }
+  }
+  //carga de operaciones por nivel de juego sumas
   resultSumas (ejercicios, nivel, error)
   {
     if(error != null) {
@@ -138,45 +151,49 @@ class Sumas extends Component {
       return;
     }
     if(nivel === 1) {
-      this.setState({data1 : ejercicios })
+      this.setState({data1 : ejercicios.data })
     }
     if(nivel === 2) {
-      this.setState({data2 : ejercicios })
+      this.setState({data2 : ejercicios.data })
     }
     if(nivel === 3) {
-      this.setState({data3 : ejercicios })
+      this.setState({data3 : ejercicios.data })
     }
   }
 
-  
+  // avanzar nivel y guardar puntaje por nivel
   avanzarNivel(e) {
     this.setState({nivel: this.state.nivel + 1});
-    console.log(this.state.resultados);
     this.setState({resultados: []});
-    Api.obtenerNivelSumas(this.state.nivel + 1, this.resultSumas.bind(this));
     this.setState({valueNext: 'CINCO'});
+    Api.obtenerNivelSumas(this.state.nivel + 1, this.resultSumas.bind(this));
+    if(this.state.nivel === 3){
+      Api.guardarPuntajePorNivel("Sumas", this.props.name, this.state.nivel, this.state.puntos, "Completo");
+    } else {
+      Api.guardarPuntajePorNivel("Sumas", this.props.name, this.state.nivel, this.state.puntos, "Incompleto");
+    }
   }
 
-  guardarResultado(operacion, e) {
-    let val = e.target.value;
-    const array = this.state.resultados;
-    array[e.target.id - 1] = ([operacion, val]);
-    this.setState({resultados: array});
+  // finalizar juego se guarda el score final y se actualiza el score por nivel
+  finalizarJuego(e) {
+    this.setState({openModal: true});
+    Api.guardarPuntajeSuma(this.props.name, this.state.puntos);
+    Api.guardarPuntajePorNivel("Sumas", this.props.name, this.state.nivel, this.state.puntos, "Completo");
   }
 
-  addToAnswer = (item, row) => {
+  //Mostrar respuesta correcta o incorrecta - Habilitar boton siguiente
+  actionAnswer = (item, row) => {
     var result = this.state.puntos;
     if(item === row.resultado){
       this.setState({open: true});
       this.setState({openError: false});
-      result = result + 5;
-      this.setState({puntos: result});
+      result = result + 10;
     } else {
       this.setState({openError: true})
       this.setState({open: false})
-      result = result - 5;
-      this.setState({puntos: result})
+      result = result - 10;
     } 
+    this.setState({puntos: result})
     row.value = 'pulso';
     var select = this.state.valueNext.substr(1);
     this.setState({valueNext: select});
@@ -187,15 +204,11 @@ class Sumas extends Component {
 
   render() {
     const { classes } = this.props;
-console.log(this.props);
     return (
       <React.Fragment>
           <Container>           
            <CardActions>
-            <Typography className={classes.title} variant="h3">
-            <Button><Typography className={classes.title} variant="h3">{this.props.name}</Typography></Button>
-             , practiquemos las Sumas!!!
-            </Typography>
+            <h1>{this.props.name}, practiquemos las Sumas!!!</h1>
            </CardActions>
             <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
             <Container> 
@@ -207,7 +220,7 @@ console.log(this.props);
                 </Grid>
                 {
                 row.opciones.map((item) => 
-                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.addToAnswer(item, row)}>{item}</Button>        
+                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
                 )}
               </div>
               ))}
@@ -222,7 +235,7 @@ console.log(this.props);
                 </Grid>
                 {
                 row.opciones.map((item) => 
-                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.addToAnswer(item, row)}>{item}</Button>        
+                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
                 )}
               </div>
               ))}
@@ -237,7 +250,7 @@ console.log(this.props);
                 </Grid>
                 {
                 row.opciones.map((item) => 
-                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.addToAnswer(item, row)}>{item}</Button>        
+                  <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
                 )}
               </div>
               ))}
@@ -246,12 +259,12 @@ console.log(this.props);
             <div>
               <Snackbar open={this.state.open} autoHideDuration={1500} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="success">
-                  Correcto! SUMAS PUNTOS  +5 !!
+                  Correcto! SUMAS PUNTOS  +10 !!
                 </Alert>
               </Snackbar>
               <Snackbar open={this.state.openError} autoHideDuration={1500} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="error">
-                  Incorrecto! RESTAS PUNTOS  -5 !!
+                  Incorrecto! RESTAS PUNTOS  -10 !!
                 </Alert>
               </Snackbar>
             </div>
@@ -260,7 +273,7 @@ console.log(this.props);
               {/* No tiene sentido retrocederNivel ? */}
               {/* {this.state.nivel > 1 && <Button variant="contained" color="primary" onClick={this.retrocederNivel.bind(this)} className={classes.boton}>Anterior</Button>} */}
               {this.state.nivel < 3 && <Button variant="contained" color="primary" onClick={this.avanzarNivel.bind(this)} disabled={this.state.valueNext} className={classes.boton}>Siguiente</Button>}
-              {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={() => this.setState({openModal: true})} disabled={this.state.valueNext} className={classes.boton}>Finalizar</Button>}
+              {this.state.nivel === 3 && <Button variant="contained" color="primary" onClick={this.finalizarJuego.bind(this)} disabled={this.state.valueNext} className={classes.boton}>Finalizar</Button>}
             </div>
             <Modal
             open={this.state.openModal}
@@ -273,6 +286,17 @@ console.log(this.props);
                 <p id="simple-modal-description">
                   Tu puntaje es {this.state.puntos}
                 </p>
+                <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
+              </div>
+            </Modal>
+            <Modal
+            open={this.state.openInformation}
+            onClose={this.handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            >
+              <div style={getModalStyle()} className={classes.paper}>
+                <h2 id="simple-modal-title">El Juego se encuentra incompleto. Completalo!</h2>
                 <Button variant="contained" onClick={this.handleClose.bind(this)}>Aceptar</Button>
               </div>
             </Modal>
