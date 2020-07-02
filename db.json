@@ -259,7 +259,8 @@
                 "6",
                 "5"
             ],
-            "resultado": "6"
+            "resultado": "6",
+            "value": ""
         },
         {
             "id": "2",
@@ -269,7 +270,8 @@
                 "11",
                 "14"
             ],
-            "resultado": "11"
+            "resultado": "11",
+            "value": ""
         },
         {
             "id": "3",
@@ -279,7 +281,8 @@
                 "13",
                 "11"
             ],
-            "resultado": "11"
+            "resultado": "11",
+            "value": ""
         },
         {
             "id": "4",
@@ -289,7 +292,8 @@
                 "8",
                 "10"
             ],
-            "resultado": "9"
+            "resultado": "9",
+            "value": ""
         },
         {
             "id": "5",
@@ -299,47 +303,8 @@
                 "8",
                 "9"
             ],
-            "resultado": "8"
-        },
-        {
-            "id": "6",
-            "operacion": "4 + 6 =",
-            "opciones": [
-                "9",
-                "16",
-                "10"
-            ],
-            "resultado": "10"
-        },
-        {
-            "id": "7",
-            "operacion": "2 + 9 =",
-            "opciones": [
-                "11",
-                "13",
-                "12"
-            ],
-            "resultado": "11"
-        },
-        {
-            "id": "8",
-            "operacion": "9 + 5 =",
-            "opciones": [
-                "16",
-                "14",
-                "15"
-            ],
-            "resultado": "14"
-        },
-        {
-            "id": "9",
-            "operacion": "8 + 5 =",
-            "opciones": [
-                "14",
-                "12",
-                "13"
-            ],
-            "resultado": "13"
+            "resultado": "8",
+            "value": ""
         }
     ],
     "sumas2": [
@@ -351,7 +316,8 @@
                 "17",
                 "19"
             ],
-            "resultado": "17"
+            "resultado": "17",
+            "value": ""
         },
         {
             "id": "2",
@@ -361,7 +327,8 @@
                 "17",
                 "26"
             ],
-            "resultado": "16"
+            "resultado": "16",
+            "value": ""
         },
         {
             "id": "3",
@@ -371,7 +338,8 @@
                 "21",
                 "20"
             ],
-            "resultado": "20"
+            "resultado": "20",
+            "value": ""
         },
         {
             "id": "4",
@@ -381,7 +349,8 @@
                 "22",
                 "24"
             ],
-            "resultado": "22"
+            "resultado": "22",
+            "value": ""
         },
         {
             "id": "5",
@@ -391,47 +360,8 @@
                 "20",
                 "23"
             ],
-            "resultado": "22"
-        },
-        {
-            "id": "6",
-            "operacion": "14 + 5 =",
-            "opciones": [
-                "20",
-                "21",
-                "19"
-            ],
-            "resultado": "19"
-        },
-        {
-            "id": "7",
-            "operacion": "2 + 17 =",
-            "opciones": [
-                "19",
-                "18",
-                "20"
-            ],
-            "resultado": "19"
-        },
-        {
-            "id": "8",
-            "operacion": "4 + 19 =",
-            "opciones": [
-                "25",
-                "24",
-                "23"
-            ],
-            "resultado": "23"
-        },
-        {
-            "id": "9",
-            "operacion": "12 + 9 =",
-            "opciones": [
-                "20",
-                "21",
-                "28"
-            ],
-            "resultado": "21"
+            "resultado": "22",
+            "value": ""
         }
     ],
     "sumas3": [
@@ -443,7 +373,8 @@
                 "30",
                 "32"
             ],
-            "resultado": "26"
+            "resultado": "26",
+            "value": ""
         },
         {
             "id": "2",
@@ -453,7 +384,8 @@
                 "32",
                 "38"
             ],
-            "resultado": "32"
+            "resultado": "32",
+            "value": ""
         },
         {
             "id": "3",
@@ -463,7 +395,8 @@
                 "45",
                 "44"
             ],
-            "resultado": "45"
+            "resultado": "45",
+            "value": ""
         },
         {
             "id": "4",
@@ -473,7 +406,8 @@
                 "29",
                 "31"
             ],
-            "resultado": "31"
+            "resultado": "31",
+            "value": ""
         },
         {
             "id": "5",
@@ -483,47 +417,8 @@
                 "41",
                 "46"
             ],
-            "resultado": "41"
-        },
-        {
-            "id": "6",
-            "operacion": "4 + 15 + 32=",
-            "opciones": [
-                "53",
-                "49",
-                "51"
-            ],
-            "resultado": "51"
-        },
-        {
-            "id": "7",
-            "operacion": "11 + 5 + 28 =",
-            "opciones": [
-                "44",
-                "39",
-                "48"
-            ],
-            "resultado": "44"
-        },
-        {
-            "id": "8",
-            "operacion": "2 + 35 + 22 =",
-            "opciones": [
-                "60",
-                "59",
-                "62"
-            ],
-            "resultado": "59"
-        },
-        {
-            "id": "9",
-            "operacion": "18 + 4 + 42 =",
-            "opciones": [
-                "66",
-                "58",
-                "64"
-            ],
-            "resultado": "64"
+            "resultado": "41",
+            "value": ""
         }
     ]
 }

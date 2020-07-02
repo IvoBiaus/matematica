@@ -113,4 +113,4 @@ class Barra extends Component {
 }
  
 
-export default withStyles(useStyles)(Barra);;
+export default withStyles(useStyles)(Barra);
