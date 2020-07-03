@@ -221,7 +221,10 @@ class Sumas extends Component {
            <CardActions>
             <h1>{this.props.name}, practiquemos las Sumas!!!</h1>
            </CardActions>
-            <h3 className='titleCenter'>Nivel {this.state.nivel}</h3>
+            <div className='row'>
+              <h3 className='titleCenter' style={{marginRight: '30px'}}>Nivel {this.state.nivel}</h3>
+              <h3 className='titleCenter'>Puntaje: {this.state.puntos}</h3>
+            </div>
             <Container> 
               {this.state.nivel === 1 && <form className={classes.root}>
               {this.state.data1.map((row) => ( 
@@ -242,7 +245,7 @@ class Sumas extends Component {
               {this.state.data2.map((row) => ( 
               <div className='row center'>
                 <Grid> 
-                  <Button className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
+                  <Button disabled={row.value} className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
                 </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
@@ -257,7 +260,7 @@ class Sumas extends Component {
               {this.state.data3.map((row) => ( 
               <div className='row center'>
                 <Grid> 
-                  <Button className={classes.boxTextLarge} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
+                  <Button disabled={row.value} className={classes.boxTextLarge} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
                 </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
