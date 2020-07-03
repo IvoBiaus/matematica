@@ -52,7 +52,18 @@ const useStyles = theme => ({
     backgroundColor: '#FFC226',
     borderRadius: '10px',
     height: '75px',
-    width: '90px',
+    width: '100px',
+    fontSize: '20px'
+    
+  },
+  boxTextLarge: {
+    border: 'solid',
+    marginRight: 25,
+    backgroundColor: '#FFC226',
+    borderRadius: '10px',
+    height: '75px',
+    width: '150px',
+    fontSize: '20px'
     
   },
   paper: {
@@ -126,14 +137,14 @@ class Sumas extends Component {
 
   componentDidMount() 
   {
-    Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
+    //Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
     Api.obtenerEstadoDeJuego("Sumas", this.props.name, "Incompleto", this.resultEstadoJuego.bind(this));
     
   }
   resultEstadoJuego (res)
   {
     if(res === null || res.data.state === "Completo"){
-      //Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
+      Api.obtenerNivelSumas(this.state.nivel, this.resultSumas.bind(this));
     } else {
       this.setState({openInformation: true});
       this.setState({nivel: res.data.lvl + 1});
@@ -216,8 +227,8 @@ class Sumas extends Component {
               {this.state.data1.map((row) => ( 
               <div className='row center'>
                 <Grid> 
-                  <Button className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
-                </Grid>
+                  <Button disabled={row.value} className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
+                </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
                   <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
@@ -232,7 +243,7 @@ class Sumas extends Component {
               <div className='row center'>
                 <Grid> 
                   <Button className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
-                </Grid>
+                </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
                   <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
@@ -246,8 +257,8 @@ class Sumas extends Component {
               {this.state.data3.map((row) => ( 
               <div className='row center'>
                 <Grid> 
-                  <Button className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
-                </Grid>
+                  <Button className={classes.boxTextLarge} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
+                </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
                   <Button disabled={row.value} className={classes.option} variant="contained" color="default" disableElevation id={row.id} onClick={() => this.actionAnswer(item, row)}>{item}</Button>        
@@ -257,12 +268,12 @@ class Sumas extends Component {
               </form>}
             </Container>
             <div>
-              <Snackbar open={this.state.open} autoHideDuration={1500} onClose={this.handleClose}>
+              <Snackbar open={this.state.open} autoHideDuration={1200} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="success">
                   Correcto! SUMAS PUNTOS  +10 !!
                 </Alert>
               </Snackbar>
-              <Snackbar open={this.state.openError} autoHideDuration={1500} onClose={this.handleClose}>
+              <Snackbar open={this.state.openError} autoHideDuration={1200} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="error">
                   Incorrecto! RESTAS PUNTOS  -10 !!
                 </Alert>
