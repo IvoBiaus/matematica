@@ -227,7 +227,7 @@ class Sumas extends Component {
               {this.state.data1.map((row) => ( 
               <div className='row center'>
                 <Grid> 
-                  <Button className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
+                  <Button disabled={row.value} className={classes.boxText} variant="contained" color="default" disableElevation id={row.id}>{row.operacion}</Button>        
                 </Grid> <div style={{ fontSize:'200%', marginTop: '10px', marginRight: '15px'}}>=</div>
                 {
                 row.opciones.map((item) => 
