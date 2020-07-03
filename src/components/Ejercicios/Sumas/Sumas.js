@@ -268,12 +268,12 @@ class Sumas extends Component {
               </form>}
             </Container>
             <div>
-              <Snackbar open={this.state.open} autoHideDuration={1500} onClose={this.handleClose}>
+              <Snackbar open={this.state.open} autoHideDuration={1200} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="success">
                   Correcto! SUMAS PUNTOS  +10 !!
                 </Alert>
               </Snackbar>
-              <Snackbar open={this.state.openError} autoHideDuration={1500} onClose={this.handleClose}>
+              <Snackbar open={this.state.openError} autoHideDuration={1200} onClose={this.handleClose}>
                 <Alert onClose={this.handleClose} severity="error">
                   Incorrecto! RESTAS PUNTOS  -10 !!
                 </Alert>
